@@ -128,7 +128,7 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
                   key={link.id}
                   href={link.path}
                   className={`relative text-sm font-medium transition-colors py-1.5 ${
-                    isActive ? "text-indigo-400 font-bold" : "text-slate-400 hover:text-slate-200"
+                    isActive ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-300"
                   }`}
                 >
                   <span className="bengali-title">{link.label}</span>
@@ -147,26 +147,26 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
           <div className="flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md text-slate-300 hover:text-white transition-all duration-300 hover:scale-[1.02]"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
               aria-label="Toggle Theme"
             >
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
-            <div className="flex items-center gap-2 rounded-xl bg-slate-900/80 px-4 py-2 border border-slate-800">
+            <div className="flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-900/80 px-4 py-2 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100">
               {user.role === "admin" ? (
-                <Shield className="h-4 w-4 text-emerald-400" />
+                <Shield className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
               ) : (
-                <UserIcon className="h-4 w-4 text-indigo-400" />
+                <UserIcon className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               )}
-              <span className="text-sm font-medium max-w-[120px] truncate">{user.name}</span>
-              <span className="text-xs uppercase bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full font-bold">
+              <span className="text-sm font-semibold max-w-[120px] truncate">{user.name}</span>
+              <span className="text-xs uppercase bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 px-2 py-0.5 rounded-full font-extrabold">
                 {user.role}
               </span>
             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-all duration-300"
+              className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 px-5 py-2.5 text-sm font-semibold hover:scale-[1.02]"
             >
               <LogOut className="h-4 w-4" />
               <span>Logout</span>
@@ -177,14 +177,14 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
 
       {/* Sub-Header Navigation for Normal Users */}
       {user && user.role !== "admin" && (
-        <div className="border-b border-slate-900 bg-slate-950 px-6 py-3">
+        <div className="border-b border-slate-200 dark:border-slate-900 bg-slate-100/80 dark:bg-slate-950 px-6 py-3">
           <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-x-auto">
             <button
               onClick={() => router.push("/dashboard/daily")}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
                 allowedRole === "daily"
-                  ? "bg-emerald-100 text-emerald-700 border-emerald-500 dark:bg-emerald-950/45 dark:text-emerald-400 dark:border-emerald-500"
-                  : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200/50 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-slate-900"
+                  ? "bg-emerald-100 text-emerald-700 border-emerald-500 dark:bg-emerald-950/45 dark:text-emerald-400 dark:border-emerald-500 shadow-sm"
+                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-emerald-950/40 dark:hover:text-emerald-300"
               }`}
             >
               <Coins className="h-3.5 w-3.5" />
@@ -194,8 +194,8 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
               onClick={() => router.push("/dashboard/business")}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
                 allowedRole === "business"
-                  ? "bg-emerald-100 text-emerald-700 border-emerald-500 dark:bg-emerald-950/45 dark:text-emerald-400 dark:border-emerald-500"
-                  : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200/50 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-slate-900"
+                  ? "bg-blue-100 text-blue-700 border-blue-500 dark:bg-blue-950/45 dark:text-blue-400 dark:border-blue-500 shadow-sm"
+                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-blue-950/40 dark:hover:text-blue-300"
               }`}
             >
               <Briefcase className="h-3.5 w-3.5" />
@@ -205,8 +205,8 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
               onClick={() => router.push("/dashboard/study")}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
                 allowedRole === "study"
-                  ? "bg-emerald-100 text-emerald-700 border-emerald-500 dark:bg-emerald-950/45 dark:text-emerald-400 dark:border-emerald-500"
-                  : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200/50 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-slate-900"
+                  ? "bg-purple-100 text-purple-700 border-purple-500 dark:bg-purple-950/45 dark:text-purple-400 dark:border-purple-500 shadow-sm"
+                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-purple-950/40 dark:hover:text-purple-300"
               }`}
             >
               <GraduationCap className="h-3.5 w-3.5" />

@@ -243,8 +243,8 @@ export default function StudyDashboard() {
                     }}
                     className={`rounded-xl border py-2.5 text-xs font-bold transition-all ${
                       type === "expense"
-                        ? "border-rose-500 bg-rose-950/20 text-rose-400"
-                        : "border-slate-800 bg-slate-900/40 text-slate-400 hover:bg-slate-900"
+                        ? "border-rose-500 bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400"
+                        : "border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/40 text-slate-600 dark:text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
                     }`}
                   >
                     খরচ (Expense)
@@ -257,8 +257,8 @@ export default function StudyDashboard() {
                     }}
                     className={`rounded-xl border py-2.5 text-xs font-bold transition-all ${
                       type === "income"
-                        ? "border-emerald-500 bg-emerald-950/20 text-emerald-400"
-                        : "border-slate-800 bg-slate-900/40 text-slate-400 hover:bg-slate-900"
+                        ? "border-emerald-500 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
+                        : "border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/40 text-slate-600 dark:text-slate-400 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/30"
                     }`}
                   >
                     আয়/উপহার (Income)

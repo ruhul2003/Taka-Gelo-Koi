@@ -56,7 +56,7 @@ export default function LandingNavbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-4 mx-auto max-w-7xl flex items-center justify-between rounded-b-2xl backdrop-blur-md">
+    <nav className="sticky top-0 z-50 glass-panel border-b border-slate-200/80 dark:border-slate-800 px-8 py-4 mx-auto max-w-[1440px] w-full flex items-center justify-between rounded-b-2xl backdrop-blur-md">
       <Link href="/" className="flex items-center gap-3">
         <div className="rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 p-2.5 shadow-indigo-500/20 shadow-md">
           <Wallet className="h-6 w-6 text-white" />
@@ -74,7 +74,7 @@ export default function LandingNavbar() {
               key={link.id}
               href={link.path}
               className={`relative text-sm font-medium transition-colors py-1.5 ${
-                isActive ? "text-indigo-400 font-bold" : "text-slate-400 hover:text-slate-200"
+                isActive ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-300"
               }`}
             >
               <span className="bengali-title">{link.label}</span>
@@ -93,7 +93,7 @@ export default function LandingNavbar() {
       <div className="flex items-center gap-4">
         <button
           onClick={toggleTheme}
-          className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md text-slate-300 hover:text-white transition-all duration-300 hover:scale-[1.02]"
+          className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
           aria-label="Toggle Theme"
         >
           {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -105,14 +105,14 @@ export default function LandingNavbar() {
         ) : session ? (
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md px-5 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-all duration-300 hover:scale-[1.02]"
+            className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02] px-5 py-2.5 text-sm font-semibold"
           >
             <LogOut className="h-4 w-4" />
             <span>Logout</span>
           </button>
         ) : (
           <>
-            <Link href="/login" className="text-sm font-semibold hover:text-indigo-400 transition-colors">
+            <Link href="/login" className="text-sm font-semibold text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">
               Login
             </Link>
             <Link 
