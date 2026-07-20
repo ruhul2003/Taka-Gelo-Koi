@@ -75,12 +75,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100 selection:bg-indigo-500">
-      {/* Background Gradient Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-violet-900/20 blur-[120px]" />
-      <div className="absolute bottom-[20%] right-[-10%] h-[600px] w-[600px] rounded-full bg-blue-900/20 blur-[150px]" />
-
-      <LandingNavbar />
+    <>
 
       {/* Hero Section */}
       <section className="relative z-10 mx-auto max-w-7xl px-6 pt-20 pb-20 text-center">
@@ -442,21 +437,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-slate-900 py-12 px-6 bg-slate-950">
-        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-slate-900 p-2 border border-slate-800">
-              <Wallet className="h-5 w-5 text-indigo-400" />
-            </div>
-            <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              Taka Gelo Koi
-            </span>
-          </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import LandingNavbar from "@/components/LandingNavbar";
-import { Wallet } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function DemoPage() {
@@ -33,125 +31,102 @@ export default function DemoPage() {
   const demoBalance = demoIncome - demoExpense;
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100 selection:bg-indigo-500">
-      {/* Background Gradient Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-violet-900/20 blur-[120px]" />
-      <div className="absolute bottom-[20%] right-[-10%] h-[600px] w-[600px] rounded-full bg-blue-900/20 blur-[150px]" />
+    <section className="mx-auto max-w-7xl px-6 py-16">
+      <div className="text-center mb-12">
+        <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Try It Live (Live Demo)</h1>
+        <p className="text-slate-400 max-w-xl mx-auto">See how our tracking system works before creating an account.</p>
+      </div>
 
-      <LandingNavbar />
-
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="text-center mb-12">
-          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Try It Live (Live Demo)</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">See how our tracking system works before creating an account.</p>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
-          {/* Demo input */}
-          <div className="glass-panel rounded-2xl p-6 h-fit">
-            <h4 className="bengali-title text-lg font-bold mb-4 text-slate-200">হিসাবটি এন্ট্রি করুন</h4>
-            <form onSubmit={addDemoItem} className="space-y-4">
-              <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1">ধরণ</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setDemoType("expense")}
-                    className={`rounded-xl border py-2 text-xs font-bold transition-all ${
-                      demoType === "expense"
-                        ? "border-rose-500 bg-rose-950/20 text-rose-400"
-                        : "border-slate-800 bg-slate-900/40 text-slate-400"
-                    }`}
-                  >
-                    খরচ (Cost)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setDemoType("income")}
-                    className={`rounded-xl border py-2 text-xs font-bold transition-all ${
-                      demoType === "income"
-                        ? "border-emerald-500 bg-emerald-950/20 text-emerald-400"
-                        : "border-slate-800 bg-slate-900/40 text-slate-400"
-                    }`}
-                  >
-                    আয় (Income)
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1">পরিমাণ (৳)</label>
-                <input
-                  type="number"
-                  required
-                  value={demoAmount}
-                  onChange={(e) => setDemoAmount(e.target.value)}
-                  placeholder="টাকার পরিমাণ লিখুন"
-                  className="w-full rounded-xl bg-slate-900 border border-slate-800 px-3 py-2 text-sm text-slate-200 outline-none focus:border-indigo-500"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 py-2.5 text-sm font-bold text-white shadow"
-              >
-                যোগ করুন
-              </button>
-            </form>
-          </div>
-
-          {/* Demo logs & summaries */}
-          <div className="lg:col-span-2 glass-panel rounded-2xl p-6 flex flex-col justify-between">
+      <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
+        {/* Demo input */}
+        <div className="glass-panel rounded-2xl p-6 h-fit">
+          <h4 className="bengali-title text-lg font-bold mb-4 text-slate-200">হিসাবটি এন্ট্রি করুন</h4>
+          <form onSubmit={addDemoItem} className="space-y-4">
             <div>
-              <div className="flex justify-between items-center mb-6">
-                <h4 className="bengali-title text-lg font-bold text-slate-200">Demo Ledger</h4>
-                <div className="flex gap-4 text-xs font-semibold">
-                  <span className="text-emerald-400">Income: {demoIncome.toLocaleString()}৳</span>
-                  <span className="text-rose-400">Expense: {demoExpense.toLocaleString()}৳</span>
-                </div>
-              </div>
-
-              <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
-                {demoList.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex justify-between items-center rounded-xl bg-slate-900/40 border border-slate-800/80 px-4 py-2.5 text-sm"
-                  >
-                    <span className="text-slate-300 font-semibold">{item.desc}</span>
-                    <span className={`font-bold ${item.type === "income" ? "text-emerald-400" : "text-rose-400"}`}>
-                      {item.type === "income" ? "+" : "-"}{item.amount.toLocaleString()} ৳
-                    </span>
-                  </motion.div>
-                ))}
+              <label className="text-xs font-semibold text-slate-400 block mb-1">ধরণ</label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setDemoType("expense")}
+                  className={`rounded-xl border py-2 text-xs font-bold transition-all ${
+                    demoType === "expense"
+                      ? "border-rose-500 bg-rose-950/20 text-rose-400"
+                      : "border-slate-800 bg-slate-900/40 text-slate-400"
+                  }`}
+                >
+                  খরচ (Cost)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDemoType("income")}
+                  className={`rounded-xl border py-2 text-xs font-bold transition-all ${
+                    demoType === "income"
+                      ? "border-emerald-500 bg-emerald-950/20 text-emerald-400"
+                      : "border-slate-800 bg-slate-900/40 text-slate-400"
+                  }`}
+                >
+                  আয় (Income)
+                </button>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-400">Remaining Balance:</span>
-              <span className={`text-xl font-extrabold ${demoBalance >= 0 ? "text-indigo-400" : "text-rose-400"}`}>
-                {demoBalance.toLocaleString()} ৳
-              </span>
+            <div>
+              <label className="text-xs font-semibold text-slate-400 block mb-1">পরিমাণ (৳)</label>
+              <input
+                type="number"
+                required
+                value={demoAmount}
+                onChange={(e) => setDemoAmount(e.target.value)}
+                placeholder="টাকার পরিমাণ লিখুন"
+                className="w-full rounded-xl bg-slate-900 border border-slate-800 px-3 py-2 text-sm text-slate-200 outline-none focus:border-indigo-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 py-2.5 text-sm font-bold text-white shadow"
+            >
+              যোগ করুন
+            </button>
+          </form>
+        </div>
+
+        {/* Demo logs & summaries */}
+        <div className="lg:col-span-2 glass-panel rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div className="flex justify-between items-center mb-6">
+              <h4 className="bengali-title text-lg font-bold text-slate-200">Demo Ledger</h4>
+              <div className="flex gap-4 text-xs font-semibold">
+                <span className="text-emerald-400">Income: {demoIncome.toLocaleString()}৳</span>
+                <span className="text-rose-400">Expense: {demoExpense.toLocaleString()}৳</span>
+              </div>
+            </div>
+
+            <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
+              {demoList.map((item) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex justify-between items-center rounded-xl bg-slate-900/40 border border-slate-800/80 px-4 py-2.5 text-sm"
+                >
+                  <span className="text-slate-300 font-semibold">{item.desc}</span>
+                  <span className={`font-bold ${item.type === "income" ? "text-emerald-400" : "text-rose-400"}`}>
+                    {item.type === "income" ? "+" : "-"}{item.amount.toLocaleString()} ৳
+                  </span>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 py-12 px-6 bg-slate-950/60">
-        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-slate-900 p-2 border border-slate-800">
-              <Wallet className="h-5 w-5 text-indigo-400" />
-            </div>
-            <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              Taka Gelo Koi
+          <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+            <span className="text-xs font-bold text-slate-400">Remaining Balance:</span>
+            <span className={`text-xl font-extrabold ${demoBalance >= 0 ? "text-indigo-400" : "text-rose-400"}`}>
+              {demoBalance.toLocaleString()} ৳
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </section>
   );
 }

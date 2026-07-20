@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Track your income and costs of daily life, businesses, and studies with role-based dashboards.",
 };
 
+import AppLayout from "@/components/AppLayout";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,7 +50,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white overflow-x-hidden font-sans">
-        {children}
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );
