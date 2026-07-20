@@ -38,8 +38,8 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       const [usersRes, statsRes] = await Promise.all([
-        fetch("http://localhost:5000/api/admin/users", { credentials: "include" }),
-        fetch("http://localhost:5000/api/admin/stats", { credentials: "include" }),
+        fetch("/api/admin/users", { credentials: "include" }),
+        fetch("/api/admin/stats", { credentials: "include" }),
       ]);
 
       if (usersRes.ok && statsRes.ok) {

@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/auth/:path*",
+      "destination": "https://taka-gelo-koi-2ga6.vercel.app/api/auth/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://taka-gelo-koi-2ga6.vercel.app/api/:path*"
+    }
+  ]
+}

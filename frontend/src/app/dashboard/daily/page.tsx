@@ -42,7 +42,7 @@ export default function DailyDashboard() {
 
   const fetchTransactions = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/transactions?dashboard=daily", {
+      const res = await fetch("/api/transactions?dashboard=daily", {
         credentials: "include",
       });
       if (res.ok) {
@@ -68,7 +68,7 @@ export default function DailyDashboard() {
     if (!amount || parseFloat(amount) <= 0) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/transactions", {
+      const res = await fetch("/api/transactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -102,7 +102,7 @@ export default function DailyDashboard() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/transactions/${id}`, {
+      const res = await fetch(`/api/transactions/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
