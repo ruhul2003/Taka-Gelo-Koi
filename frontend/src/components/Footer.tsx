@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Wallet, Heart, ArrowUpRight, Mail } from "lucide-react";
+import Image from "next/image";
+import { Heart, ArrowUpRight, Mail } from "lucide-react";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -63,11 +64,15 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3 w-fit">
-              <div className="rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 p-2.5 shadow-indigo-500/20 shadow-md text-white">
-                <Wallet className="h-6 w-6" />
-              </div>
-              <span className="bengali-title text-2xl font-extrabold tracking-wider text-indigo-600 dark:text-gradient">
+            <Link href="/" className="flex items-center gap-3.5 w-fit group">
+              <Image
+                src="/logo.png"
+                alt="Taka Gelo Koi Logo"
+                width={64}
+                height={64}
+                className="h-12 w-12 sm:h-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="bengali-title text-2xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
                 টাকা গেল কই ?
               </span>
             </Link>

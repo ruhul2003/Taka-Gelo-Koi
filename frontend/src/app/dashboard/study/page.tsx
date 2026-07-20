@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Plus, Trash2, ArrowUpRight, ArrowDownRight, CircleAlert, GraduationCap, Coins } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface Transaction {
   id: string;
@@ -153,7 +154,12 @@ export default function StudyDashboard() {
 
   return (
     <DashboardLayout allowedRole="study">
-      <div className="space-y-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="space-y-8"
+      >
         {/* Banner */}
         <div className="flex flex-col gap-2">
           <h1 className="bengali-title text-3xl font-extrabold text-slate-100">শিক্ষা ব্যয় ট্র্যাকার</h1>
@@ -503,7 +509,7 @@ export default function StudyDashboard() {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     </DashboardLayout>
   );
 }

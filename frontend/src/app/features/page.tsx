@@ -5,11 +5,21 @@ import { motion } from "framer-motion";
 
 export default function FeaturesPage() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
-      <div className="text-center mb-16">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mx-auto max-w-7xl px-6 py-16"
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-center mb-16"
+      >
         <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">3 Different Dashboard Options</h1>
         <p className="text-slate-400 max-w-xl mx-auto">Pre-built dashboards designed to analyze spending trends for every area of your life.</p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-8 md:grid-cols-3">
         {/* Card 1: Daily Life */}
@@ -96,6 +106,6 @@ export default function FeaturesPage() {
           </ul>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Users, Coins, ShieldAlert, Award, FileText, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface UserStat {
   id: string;
@@ -64,7 +65,12 @@ export default function AdminDashboard() {
 
   return (
     <DashboardLayout allowedRole="admin">
-      <div className="space-y-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="space-y-8"
+      >
         {/* Banner */}
         <div className="flex flex-col gap-2">
           <h1 className="bengali-title text-3xl font-extrabold text-slate-100">সিস্টেম অ্যাডমিন ড্যাশবোর্ড</h1>
@@ -193,7 +199,7 @@ export default function AdminDashboard() {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     </DashboardLayout>
   );
 }

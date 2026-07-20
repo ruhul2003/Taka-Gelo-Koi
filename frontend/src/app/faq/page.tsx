@@ -18,17 +18,30 @@ export default function FAQPage() {
   ];
 
   return (
-    <section className="mx-auto max-w-4xl px-6 py-16">
-      <div className="text-center mb-12">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mx-auto max-w-4xl px-6 py-16"
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-center mb-12"
+      >
         <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Frequently Asked Questions</h1>
         <p className="text-slate-400">Find answers to common questions about Taka Gelo Koi below.</p>
-      </div>
+      </motion.div>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => {
           const isOpen = !!faqOpen[index];
           return (
-            <div 
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
               key={index} 
               className="glass-panel rounded-xl overflow-hidden border border-slate-900"
             >
@@ -53,10 +66,10 @@ export default function FAQPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </section>
+    </motion.section>
   );
 }

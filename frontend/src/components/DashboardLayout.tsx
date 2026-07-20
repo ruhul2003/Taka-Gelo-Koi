@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { LogOut, Wallet, User as UserIcon, Shield, Coins, Briefcase, GraduationCap, Sun, Moon } from "lucide-react";
@@ -108,13 +109,18 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
   return (
     <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100">
       {/* Header */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-4 shadow-lg backdrop-blur-md">
+      <header className="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-2.5 sm:py-3 shadow-lg backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push("/")}>
-            <div className="rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 p-2.5 shadow-indigo-500/20 shadow-md">
-              <Wallet className="h-6 w-6 text-white" />
-            </div>
-            <span className="bengali-title text-2xl font-extrabold tracking-wider text-gradient">
+          <div className="flex items-center gap-2 sm:gap-3 cursor-pointer shrink-0 group" onClick={() => router.push("/")}>
+            <Image
+              src="/logo.png"
+              alt="Taka Gelo Koi Logo"
+              width={48}
+              height={48}
+              className="h-9 w-9 sm:h-11 sm:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+            <span className="bengali-title text-lg sm:text-xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
               Taka Gelo Koi
             </span>
           </div>

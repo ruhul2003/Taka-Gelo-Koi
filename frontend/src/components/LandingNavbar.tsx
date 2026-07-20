@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Wallet, LogOut, Sun, Moon, Menu, X } from "lucide-react";
+import { LogOut, Sun, Moon, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
 
@@ -62,13 +63,18 @@ export default function LandingNavbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 mx-auto max-w-[1440px] w-full px-3 sm:px-8 py-3 sm:py-4">
-      <nav className="glass-panel border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between rounded-2xl backdrop-blur-md">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-          <div className="rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 p-2 sm:p-2.5 shadow-indigo-500/20 shadow-md">
-            <Wallet className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-          </div>
-          <span className="bengali-title text-lg sm:text-2xl font-extrabold tracking-wider text-gradient">
+    <header className="sticky top-0 z-50 mx-auto max-w-[1440px] w-full px-3 sm:px-8 py-2 sm:py-2.5">
+      <nav className="glass-panel border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between rounded-2xl backdrop-blur-md">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+          <Image
+            src="/logo.png"
+            alt="Taka Gelo Koi Logo"
+            width={48}
+            height={48}
+            className="h-9 w-9 sm:h-11 sm:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
+          <span className="bengali-title text-lg sm:text-xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
             Taka Gelo Koi
           </span>
         </Link>
@@ -81,7 +87,7 @@ export default function LandingNavbar() {
               <Link
                 key={link.id}
                 href={link.path}
-                className={`relative text-sm font-medium transition-colors py-1.5 ${
+                className={`relative text-sm font-medium transition-colors py-1 ${
                   isActive ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-300"
                 }`}
               >
@@ -99,10 +105,10 @@ export default function LandingNavbar() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
+            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
             aria-label="Toggle Theme"
           >
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -110,15 +116,15 @@ export default function LandingNavbar() {
 
           <div className="hidden sm:flex items-center gap-3">
             {isPending ? (
-              <div className="w-[100px] h-10 flex items-center justify-end">
+              <div className="w-[80px] h-9 flex items-center justify-end">
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"></div>
               </div>
             ) : session ? (
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02] px-5 py-2.5 text-sm font-semibold"
+                className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02] px-4 py-2 text-xs sm:text-sm font-semibold"
               >
-                <LogOut className="h-4 w-4" />
+                <LogOut className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>Logout</span>
               </button>
             ) : (
@@ -128,7 +134,7 @@ export default function LandingNavbar() {
                 </Link>
                 <Link 
                   href="/signup" 
-                  className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:scale-[1.02]"
+                  className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-md shadow-indigo-500/20 transition-all duration-300 hover:scale-[1.02]"
                 >
                   Sign Up
                 </Link>

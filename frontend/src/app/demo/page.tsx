@@ -31,11 +31,21 @@ export default function DemoPage() {
   const demoBalance = demoIncome - demoExpense;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
-      <div className="text-center mb-12">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mx-auto max-w-7xl px-6 py-16"
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-center mb-12"
+      >
         <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Try It Live (Live Demo)</h1>
         <p className="text-slate-400 max-w-xl mx-auto">See how our tracking system works before creating an account.</p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
         {/* Demo input */}
@@ -127,6 +137,6 @@ export default function DemoPage() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
