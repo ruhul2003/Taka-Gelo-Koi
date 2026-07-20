@@ -30,6 +30,14 @@ app.use(cors({
 // We need raw and JSON body parser
 app.use(express.json());
 
+// Welcome / Health check route
+app.get("/", (req: Request, res: Response) => {
+  res.json({
+    status: "ok",
+    message: "🚀 \"টাকা গেল কই ?\" backend server is running successfully."
+  });
+});
+
 // Auth interceptor for admin signups
 app.post("/api/auth/sign-up/email", async (req: Request, res: Response, next: NextFunction) => {
   try {
