@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend server for Taka Gelo Koi tracking app",
   "main": "dist/server.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
