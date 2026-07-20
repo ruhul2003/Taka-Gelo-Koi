@@ -13,9 +13,9 @@ export default function FAQPage() {
   };
 
   const faqs = [
-    { q: "টাকা গেল কই অ্যাপটি কি সম্পূর্ণ ফ্রি?", a: "হ্যাঁ, টাকা গেল কই অ্যাপ্লিকেশনের বেসিক ট্র্যাকিং ফিচারগুলো সাধারণ ব্যবহারকারীদের জন্য সম্পূর্ণ ফ্রি।" },
-    { q: "অ্যাডমিন প্যানেল কিভাবে কাজ করে?", a: "অ্যাডমিন প্যানেলের মাধ্যমে সিস্টেমের মোট ব্যবহারকারী এবং সমষ্টিগত লেনদেনের পরিমাণ মনিটর করা যায়। এটি ব্যবহারের জন্য সিক্রেট কী প্রয়োজন।" },
-    { q: "আমার ফাইন্যান্সিয়াল ডেটা কতটা নিরাপদ?", a: "আপনার সকল ডেটা নিজস্ব সেশনে সুরক্ষিত থাকে। Better Auth সিকিউর এনক্রিপশনের মাধ্যমে সেশন ও পাসওয়ার্ড রক্ষা করে।" }
+    { q: "Is Taka Gelo Koi app completely free?", a: "Yes, the basic tracking features of Taka Gelo Koi are completely free for all users." },
+    { q: "How does the admin panel work?", a: "The admin panel monitors total users and aggregate transactions. A secret key is required to access it." },
+    { q: "My financial data is how much safe?", a: "All your data is secure in your session. Better Auth secures sessions and passwords using modern encryption." }
   ];
 
   return (
@@ -28,8 +28,8 @@ export default function FAQPage() {
 
       <section className="relative z-10 mx-auto max-w-4xl px-6 py-16">
         <div className="text-center mb-12">
-          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">প্রায়শই জিজ্ঞাসিত প্রশ্ন</h1>
-          <p className="text-slate-400">টাকা গেল কই সম্পর্কে সাধারণ কিছু প্রশ্নের উত্তর নিচে দেওয়া হল।</p>
+          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Frequently Asked Questions</h1>
+          <p className="text-slate-400">Find answers to common questions about Taka Gelo Koi below.</p>
         </div>
 
         <div className="space-y-4">
@@ -75,10 +75,10 @@ export default function FAQPage() {
               <Wallet className="h-5 w-5 text-indigo-400" />
             </div>
             <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} টাকা গেল কই ? সর্বস্বত্ব সংরক্ষিত।</p>
+          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
       </footer>
     </div>

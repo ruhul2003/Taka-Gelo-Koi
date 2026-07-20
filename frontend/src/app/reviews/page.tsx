@@ -15,8 +15,8 @@ export default function ReviewsPage() {
 
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-16">
-          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">ব্যবহারকারীদের অভিজ্ঞতা</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">টাকা গেল কই অ্যাপ্লিকেশন ব্যবহার করে যারা তাদের খরচ নিয়ন্ত্রণ করতে পেরেছেন।</p>
+          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">User Testimonials</h1>
+          <p className="text-slate-400 max-w-xl mx-auto">Hear from users who successfully controlled their expenses using Taka Gelo Koi.</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
@@ -25,11 +25,11 @@ export default function ReviewsPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "মেসের খাবারের হিসাব আর হাত খরচ মেলাতে আমার প্রতি মাসে মাথা নষ্ট হয়ে যেত। এখন সব হিসাব এক জায়গায় থাকে।"
+              &quot;I used to struggle balancing my mess food costs and pocket money every month. Now everything is in one place.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">রাকিব হোসেন</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">শিক্ষার্থী, ঢাকা বিশ্ববিদ্যালয়</span>
+              <h5 className="text-xs font-bold text-slate-100">Rakib Hossain</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">Student, University of Dhaka</span>
             </div>
           </div>
 
@@ -38,11 +38,11 @@ export default function ReviewsPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "আমার অনলাইন ক্লোথিং স্টোরের রেভিনিউ আর কুরিয়ার খরচ মেলানোর জন্য এটি অত্যন্ত চমৎকার ভূমিকা রাখছে।"
+              &quot;It plays a wonderful role in matching revenue and courier costs for my online clothing store.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">ফারিহা আক্তার</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">এফ-কমার্স উদ্যোক্তা</span>
+              <h5 className="text-xs font-bold text-slate-100">Fariha Akhter</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">F-Commerce Entrepreneur</span>
             </div>
           </div>
 
@@ -51,11 +51,11 @@ export default function ReviewsPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "ফ্যামিলির মাসিক বাজার ও ইউটিলিটি বিলের সঠিক গতিপথ চিহ্নিত করতে এই ড্যাশবোর্ডটি দারুণ সাহায্য করেছে।"
+              &quot;This dashboard helped me identify the exact flow of my family&apos;s monthly groceries and utility bills.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">মাহমুদ হাসান</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">সফটওয়্যার ইঞ্জিনিয়ার</span>
+              <h5 className="text-xs font-bold text-slate-100">Mahmud Hasan</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">Software Engineer</span>
             </div>
           </div>
         </div>
@@ -69,10 +69,10 @@ export default function ReviewsPage() {
               <Wallet className="h-5 w-5 text-indigo-400" />
             </div>
             <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} টাকা গেল কই ? সর্বস্বত্ব সংরক্ষিত।</p>
+          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
       </footer>
     </div>

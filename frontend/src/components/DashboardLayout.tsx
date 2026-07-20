@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { LogOut, Wallet, User as UserIcon, Shield, Coins, Briefcase, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
@@ -13,8 +14,20 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, allowedRole }: DashboardLayoutProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const navLinks = [
+    { id: "home", label: "Home", path: "/" },
+    { id: "features", label: "Features", path: "/features" },
+    { id: "demo", label: "Live Demo", path: "/demo" },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      path: allowedRole === "admin" ? "/dashboard/admin" : "/dashboard/daily"
+    }
+  ];
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -77,8 +90,33 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
               <Wallet className="h-6 w-6 text-white" />
             </div>
             <span className="bengali-title text-2xl font-extrabold tracking-wider text-gradient">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
+          </div>
+
+          {/* Navigation Links in Center */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.path || (link.id === "dashboard" && pathname.startsWith("/dashboard"));
+              return (
+                <Link
+                  key={link.id}
+                  href={link.path}
+                  className={`relative text-sm font-medium transition-colors py-1.5 ${
+                    isActive ? "text-indigo-400 font-bold" : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  <span className="bengali-title">{link.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="landing-navbar-underline"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
@@ -96,10 +134,10 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 rounded-xl bg-rose-950/40 hover:bg-rose-950/70 border border-rose-900/50 hover:border-rose-900 px-4 py-2 text-sm font-medium text-rose-300 transition-all duration-300"
+              className="flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-all duration-300"
             >
               <LogOut className="h-4 w-4" />
-              <span>প্রস্থান</span>
+              <span>Logout</span>
             </button>
           </div>
         </div>

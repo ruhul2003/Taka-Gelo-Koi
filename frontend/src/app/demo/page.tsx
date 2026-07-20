@@ -10,8 +10,8 @@ export default function DemoPage() {
   const [demoAmount, setDemoAmount] = useState("2000");
   const [demoCategory, setDemoCategory] = useState("food");
   const [demoList, setDemoList] = useState([
-    { id: 1, type: "income", category: "salary", amount: 15000, desc: "পার্ট টাইম টিউশনি" },
-    { id: 2, type: "expense", category: "food", amount: 1200, desc: "সাপ্তাহিক বাজার" },
+    { id: 1, type: "income", category: "salary", amount: 15000, desc: "Part-time Tuition" },
+    { id: 2, type: "expense", category: "food", amount: 1200, desc: "Weekly Groceries" },
   ]);
 
   const addDemoItem = (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export default function DemoPage() {
       type: demoType,
       category: demoCategory,
       amount: parseFloat(demoAmount),
-      desc: demoType === "income" ? "পেমেন্ট প্রাপ্তি" : "খরচ বিবরণ"
+      desc: demoType === "income" ? "Payment Received" : "Expense Detail"
     };
     setDemoList([newItem, ...demoList]);
     setDemoAmount("");
@@ -42,8 +42,8 @@ export default function DemoPage() {
 
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-12">
-          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">সরাসরি ট্রাই করুন (লাইভ ডেমো)</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">অ্যাকাউন্ট তৈরি করার পূর্বেই দেখে নিন কিভাবে আমাদের ট্র্যাকিং সিস্টেমটি কাজ করে।</p>
+          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">Try It Live (Live Demo)</h1>
+          <p className="text-slate-400 max-w-xl mx-auto">See how our tracking system works before creating an account.</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
@@ -104,10 +104,10 @@ export default function DemoPage() {
           <div className="lg:col-span-2 glass-panel rounded-2xl p-6 flex flex-col justify-between">
             <div>
               <div className="flex justify-between items-center mb-6">
-                <h4 className="bengali-title text-lg font-bold text-slate-200">ডেমো লেজার খতিয়ান</h4>
+                <h4 className="bengali-title text-lg font-bold text-slate-200">Demo Ledger</h4>
                 <div className="flex gap-4 text-xs font-semibold">
-                  <span className="text-emerald-400">আয়: {demoIncome.toLocaleString()}৳</span>
-                  <span className="text-rose-400">ব্যয়: {demoExpense.toLocaleString()}৳</span>
+                  <span className="text-emerald-400">Income: {demoIncome.toLocaleString()}৳</span>
+                  <span className="text-rose-400">Expense: {demoExpense.toLocaleString()}৳</span>
                 </div>
               </div>
 
@@ -129,7 +129,7 @@ export default function DemoPage() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-400">অবশিষ্ট ব্যালেন্স:</span>
+              <span className="text-xs font-bold text-slate-400">Remaining Balance:</span>
               <span className={`text-xl font-extrabold ${demoBalance >= 0 ? "text-indigo-400" : "text-rose-400"}`}>
                 {demoBalance.toLocaleString()} ৳
               </span>
@@ -146,10 +146,10 @@ export default function DemoPage() {
               <Wallet className="h-5 w-5 text-indigo-400" />
             </div>
             <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} টাকা গেল কই ? সর্বস্বত্ব সংরক্ষিত।</p>
+          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
       </footer>
     </div>

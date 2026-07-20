@@ -24,8 +24,8 @@ export default function LandingPage() {
   const [demoAmount, setDemoAmount] = useState("2000");
   const [demoCategory, setDemoCategory] = useState("food");
   const [demoList, setDemoList] = useState([
-    { id: 1, type: "income", category: "salary", amount: 15000, desc: "পার্ট টাইম টিউশনি" },
-    { id: 2, type: "expense", category: "food", amount: 1200, desc: "সাপ্তাহিক বাজার" },
+    { id: 1, type: "income", category: "salary", amount: 15000, desc: "Part-time Tuition" },
+    { id: 2, type: "expense", category: "food", amount: 1200, desc: "Weekly Groceries" },
   ]);
   const [faqOpen, setFaqOpen] = useState<Record<number, boolean>>({});
 
@@ -41,7 +41,7 @@ export default function LandingPage() {
       type: demoType,
       category: demoCategory,
       amount: parseFloat(demoAmount),
-      desc: demoType === "income" ? "পেমেন্ট প্রাপ্তি" : "খরচ বিবরণ"
+      desc: demoType === "income" ? "Payment Received" : "Expense Detail"
     };
     setDemoList([newItem, ...demoList]);
     setDemoAmount("");
@@ -69,9 +69,9 @@ export default function LandingPage() {
   };
 
   const faqs = [
-    { q: "টাকা গেল কই অ্যাপটি কি সম্পূর্ণ ফ্রি?", a: "হ্যাঁ, টাকা গেল কই অ্যাপ্লিকেশনের বেসিক ট্র্যাকিং ফিচারগুলো সাধারণ ব্যবহারকারীদের জন্য সম্পূর্ণ ফ্রি।" },
-    { q: "অ্যাডমিন প্যানেল কিভাবে কাজ করে?", a: "অ্যাডমিন প্যানেলের মাধ্যমে সিস্টেমের মোট ব্যবহারকারী এবং সমষ্টিগত লেনদেনের পরিমাণ মনিটর করা যায়। এটি ব্যবহারের জন্য সিক্রেট কী প্রয়োজন।" },
-    { q: "আমার ফাইন্যান্সিয়াল ডেটা কতটা নিরাপদ?", a: "আপনার সকল ডেটা নিজস্ব সেশনে সুরক্ষিত থাকে। Better Auth সিকিউর এনক্রিপশনের মাধ্যমে সেশন ও পাসওয়ার্ড রক্ষা করে।" }
+    { q: "Is Taka Gelo Koi app completely free?", a: "Yes, the basic tracking features of Taka Gelo Koi are completely free for all users." },
+    { q: "How does the admin panel work?", a: "The admin panel monitors total users and aggregate transactions. A secret key is required to access it." },
+    { q: "My financial data is how much safe?", a: "All your data is secure in your session. Better Auth secures sessions and passwords using modern encryption." }
   ];
 
   return (
@@ -140,8 +140,8 @@ export default function LandingPage() {
       {/* Dashboard Features Grid */}
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16 border-t border-slate-900">
         <div className="text-center mb-16">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">৩টি ভিন্ন ভিন্ন ড্যাশবোর্ড সুবিধা</h2>
-          <p className="mt-4 text-slate-400 max-w-xl mx-auto">আপনার জীবনের প্রতিটি খাতের খরচের গতিবিধি আলাদাভাবে বিশ্লেষণ করার জন্য প্রস্তুতকৃত ড্যাশবোর্ডসমূহ।</p>
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">3 Different Dashboard Options</h2>
+          <p className="mt-4 text-slate-400 max-w-xl mx-auto">Pre-built dashboards designed to analyze spending trends for every area of your life.</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -154,14 +154,14 @@ export default function LandingPage() {
               <Coins className="h-8 w-8 text-violet-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-violet-200">দৈনন্দিন জীবন ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-violet-200">Daily Life Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                আপনার নিত্যদিনের বাজার খরচ, বাড়ি ভাড়া, বিল পরিশোধ ও যাতায়াত খরচ ট্র্যাক করুন। মাসের শেষে আপনার মূল খরচগুলো পাই-চার্টে দেখুন।
+                Track your daily groceries, rent, utilities, and transport costs. View your main expenses in a pie chart at the end of the month.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> আয় ও ব্যয় ট্র্যাকার</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> ক্যাটাগরিভিত্তিক পাই-চার্ট</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> Income & Expense Tracker</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> Category-wise Pie Chart</li>
             </ul>
           </motion.div>
 
@@ -174,14 +174,14 @@ export default function LandingPage() {
               <Briefcase className="h-8 w-8 text-blue-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-blue-200">ব্যবসায়িক ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-blue-200">Business Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                আপনার ব্যবসার মোট রেভিনিউ বা সেলস, অপারেশনাল কস্ট, প্রফিট মার্জিন এবং ক্লায়েন্ট পেমেন্ট ট্র্যাক করুন সুনির্দিষ্টভাবে।
+                Track your business revenue, sales, operational costs, profit margins, and client payments with precision.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> প্রফিট ও লস স্টেটমেন্ট</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> রেভিনিউ ফিল্টারস</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> Profit & Loss Statement</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> Revenue Filters</li>
             </ul>
           </motion.div>
 
@@ -194,14 +194,14 @@ export default function LandingPage() {
               <GraduationCap className="h-8 w-8 text-emerald-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-emerald-200">শিক্ষা ব্যয় ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-emerald-200">Education Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                সেমিস্টার ফি, বই কেনা, মেস ভাড়া বা হাত খরচের হিসাব রাখুন। বাজেট অ্যালার্ট সিস্টেম আপনাকে অতিরিক্ত ব্যয় থেকে রক্ষা করবে।
+                Keep track of semester fees, books, rent, or pocket money. The budget alert system protects you from overspending.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> পড়ার খরচ ও হাতখরচ বিভাজন</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> বাজেট ও প্রগ্রেস বার ট্র্যাকিং</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Study vs Pocket Money Breakdown</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Budget & Progress Bar Tracking</li>
             </ul>
           </motion.div>
         </div>
@@ -210,8 +210,8 @@ export default function LandingPage() {
       {/* Live Demo Widget / Quick Calculator */}
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16 border-t border-slate-900">
         <div className="text-center mb-12">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">সরাসরি ট্রাই করুন (লাইভ ডেমো)</h2>
-          <p className="mt-3 text-slate-400 max-w-xl mx-auto">অ্যাকাউন্ট তৈরি করার পূর্বেই দেখে নিন কিভাবে আমাদের ট্র্যাকিং সিস্টেমটি কাজ করে।</p>
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">Try It Live (Live Demo)</h2>
+          <p className="mt-3 text-slate-400 max-w-xl mx-auto">See how our tracking system works before creating an account.</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
@@ -272,10 +272,10 @@ export default function LandingPage() {
           <div className="lg:col-span-2 glass-panel rounded-2xl p-6 flex flex-col justify-between">
             <div>
               <div className="flex justify-between items-center mb-6">
-                <h4 className="bengali-title text-lg font-bold text-slate-200">ডেমো লেজার খতিয়ান</h4>
+                <h4 className="bengali-title text-lg font-bold text-slate-200">Demo Ledger</h4>
                 <div className="flex gap-4 text-xs font-semibold">
-                  <span className="text-emerald-400">আয়: {demoIncome.toLocaleString()}৳</span>
-                  <span className="text-rose-400">ব্যয়: {demoExpense.toLocaleString()}৳</span>
+                  <span className="text-emerald-400">Income: {demoIncome.toLocaleString()}৳</span>
+                  <span className="text-rose-400">Expense: {demoExpense.toLocaleString()}৳</span>
                 </div>
               </div>
 
@@ -297,7 +297,7 @@ export default function LandingPage() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-400">অবশিষ্ট ব্যালেন্স:</span>
+              <span className="text-xs font-bold text-slate-400">Remaining Balance:</span>
               <span className={`text-xl font-extrabold ${demoBalance >= 0 ? "text-indigo-400" : "text-rose-400"}`}>
                 {demoBalance.toLocaleString()} ৳
               </span>
@@ -309,8 +309,8 @@ export default function LandingPage() {
       {/* User Reviews Section */}
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 border-t border-slate-900">
         <div className="text-center mb-16">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">ব্যবহারকারীদের অভিজ্ঞতা</h2>
-          <p className="mt-4 text-slate-400 max-w-xl mx-auto">টাকা গেল কই অ্যাপ্লিকেশন ব্যবহার করে যারা তাদের খরচ নিয়ন্ত্রণ করতে পেরেছেন।</p>
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">User Testimonials</h2>
+          <p className="mt-4 text-slate-400 max-w-xl mx-auto">Hear from users who successfully controlled their expenses using Taka Gelo Koi.</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -319,11 +319,11 @@ export default function LandingPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "মেসের খাবারের হিসাব আর হাত খরচ মেলাতে আমার প্রতি মাসে মাথা নষ্ট হয়ে যেত। এখন সব হিসাব এক জায়গায় থাকে।"
+              &quot;I used to struggle balancing my mess food costs and pocket money every month. Now everything is in one place.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">রাকিব হোসেন</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">শিক্ষার্থী, ঢাকা বিশ্ববিদ্যালয়</span>
+              <h5 className="text-xs font-bold text-slate-100">Rakib Hossain</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">Student, University of Dhaka</span>
             </div>
           </div>
 
@@ -332,11 +332,11 @@ export default function LandingPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "আমার অনলাইন ক্লোথিং স্টোরের রেভিনিউ আর কুরিয়ার খরচ মেলানোর জন্য এটি অত্যন্ত চমৎকার ভূমিকা রাখছে।"
+              &quot;It plays a wonderful role in matching revenue and courier costs for my online clothing store.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">ফারিহা আক্তার</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">এফ-কমার্স উদ্যোক্তা</span>
+              <h5 className="text-xs font-bold text-slate-100">Fariha Akhter</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">F-Commerce Entrepreneur</span>
             </div>
           </div>
 
@@ -345,11 +345,11 @@ export default function LandingPage() {
               {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
             </div>
             <p className="text-sm text-slate-300 leading-relaxed italic">
-              "ফ্যামিলির মাসিক বাজার ও ইউটিলিটি বিলের সঠিক গতিপথ চিহ্নিত করতে এই ড্যাশবোর্ডটি দারুণ সাহায্য করেছে।"
+              &quot;This dashboard helped me identify the exact flow of my family&apos;s monthly groceries and utility bills.&quot;
             </p>
             <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">মাহমুদ হাসান</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">সফটওয়্যার ইঞ্জিনিয়ার</span>
+              <h5 className="text-xs font-bold text-slate-100">Mahmud Hasan</h5>
+              <span className="text-[10px] text-slate-500 font-semibold">Software Engineer</span>
             </div>
           </div>
         </div>
@@ -358,8 +358,8 @@ export default function LandingPage() {
       {/* FAQ Accordion Section */}
       <section className="relative z-10 mx-auto max-w-4xl px-6 py-20 border-t border-slate-900">
         <div className="text-center mb-12">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
-          <p className="mt-3 text-slate-400">টাকা গেল কই সম্পর্কে সাধারণ কিছু প্রশ্নের উত্তর নিচে দেওয়া হল।</p>
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">Frequently Asked Questions</h2>
+          <p className="mt-3 text-slate-400">Find answers to common questions about Taka Gelo Koi below.</p>
         </div>
 
         <div className="space-y-4">
@@ -402,8 +402,8 @@ export default function LandingPage() {
         <div className="grid gap-12 md:grid-cols-2 items-center">
           <div>
             <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">
-              নিরাপত্তা এবং ভূমিকা-ভিত্তিক <br />
-              সাইন-আপ পদ্ধতি
+              Security and Role-Based <br />
+              Sign-Up Approach
             </h2>
             <div className="space-y-6">
               <div className="flex gap-4">
@@ -411,8 +411,8 @@ export default function LandingPage() {
                   <ShieldCheck className="h-6 w-6 text-indigo-400" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-slate-200">ভূমিকা ভিত্তিক অ্যাক্সেস (RBAC)</h4>
-                  <p className="text-slate-400 text-sm mt-1">লগইন করার সাথে সাথে আপনার নির্দিষ্ট ক্যাটাগরির ড্যাশবোর্ডে নিয়ে যাওয়া হবে।</p>
+                  <h4 className="text-lg font-bold text-slate-200">Role-Based Access Control (RBAC)</h4>
+                  <p className="text-slate-400 text-sm mt-1">You will be redirected to your specific category dashboard right after logging in.</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -420,8 +420,8 @@ export default function LandingPage() {
                   <PieChart className="h-6 w-6 text-indigo-400" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-slate-200">রিয়েল-টাইম গ্রাফিক্যাল অ্যানালিটিক্স</h4>
-                  <p className="text-slate-400 text-sm mt-1">সব খরচ ও আয়ের অনুপাত সরাসরি এবং সুন্দর অ্যানিমেটেড ইন্টারফেসের মাধ্যমে দেখতে পাবেন।</p>
+                  <h4 className="text-lg font-bold text-slate-200">Real-Time Graphical Analytics</h4>
+                  <p className="text-slate-400 text-sm mt-1">See your expense-to-income ratio directly through a beautiful animated interface.</p>
                 </div>
               </div>
             </div>
@@ -429,15 +429,15 @@ export default function LandingPage() {
           <div className="rounded-3xl bg-gradient-to-tr from-indigo-600/10 to-violet-600/10 border border-slate-800 p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl" />
             <TrendingUp className="h-16 w-16 text-indigo-400 mb-6 animate-pulse" />
-            <h3 className="bengali-title text-2xl font-extrabold text-slate-100">টাকা জমানো এখন আরও সহজ!</h3>
+            <h3 className="bengali-title text-2xl font-extrabold text-slate-100">Saving Money is Now Easier!</h3>
             <p className="text-slate-400 text-sm max-w-sm mt-3 mb-6">
-              আজই হিসাব রাখা শুরু করুন এবং নিজের টাকা কোথায় যাচ্ছে তা নিমিষেই চিহ্নিত করুন।
+              Start tracking today and see where your money goes instantly.
             </p>
             <Link 
               href="/signup" 
               className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 px-6 py-3 text-sm font-semibold transition-all duration-300"
             >
-              নতুন অ্যাকাউন্ট তৈরি করুন
+              Create New Account
             </Link>
           </div>
         </div>
@@ -451,10 +451,10 @@ export default function LandingPage() {
               <Wallet className="h-5 w-5 text-indigo-400" />
             </div>
             <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} টাকা গেল কই ? সর্বস্বত্ব সংরক্ষিত।</p>
+          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
       </footer>
     </div>

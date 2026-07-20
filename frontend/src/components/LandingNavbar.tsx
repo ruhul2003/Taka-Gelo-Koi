@@ -2,20 +2,33 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Wallet } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Wallet, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
 
 export default function LandingNavbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
 
   const navLinks = [
-    { id: "home", label: "হোম", path: "/" },
-    { id: "features", label: "ফিচারসমূহ", path: "/features" },
-    { id: "demo", label: "লাইভ ডেমো", path: "/demo" },
-    { id: "reviews", label: "মতামত", path: "/reviews" },
-    { id: "faq", label: "প্রশ্নোত্তরি", path: "/faq" }
+    { id: "home", label: "Home", path: "/" },
+    { id: "features", label: "Features", path: "/features" },
+    { id: "demo", label: "Live Demo", path: "/demo" }
   ];
+
+  if (session) {
+    const dashboardPath = (session.user as { role?: string }).role === "admin" 
+      ? "/dashboard/admin" 
+      : "/dashboard/daily";
+    navLinks.push({ id: "dashboard", label: "Dashboard", path: dashboardPath });
+  }
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.refresh();
+  };
 
   return (
     <nav className="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-4 mx-auto max-w-7xl flex items-center justify-between rounded-b-2xl backdrop-blur-md">
@@ -24,7 +37,7 @@ export default function LandingNavbar() {
           <Wallet className="h-6 w-6 text-white" />
         </div>
         <span className="bengali-title text-2xl font-extrabold tracking-wider text-gradient">
-          টাকা গেল কই ?
+          Taka Gelo Koi
         </span>
       </Link>
 
@@ -53,15 +66,31 @@ export default function LandingNavbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Link href="/login" className="text-sm font-semibold hover:text-indigo-400 transition-colors">
-          প্রবেশ করুন
-        </Link>
-        <Link 
-          href="/signup" 
-          className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:scale-[1.02]"
-        >
-          শুরু করুন
-        </Link>
+        {isPending ? (
+          <div className="w-[180px] h-10 flex items-center justify-end">
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"></div>
+          </div>
+        ) : session ? (
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md px-5 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-all duration-300 hover:scale-[1.02]"
+          >
+            <LogOut className="h-4 w-4" />
+            <span>Logout</span>
+          </button>
+        ) : (
+          <>
+            <Link href="/login" className="text-sm font-semibold hover:text-indigo-400 transition-colors">
+              Login
+            </Link>
+            <Link 
+              href="/signup" 
+              className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:scale-[1.02]"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -16,8 +16,8 @@ export default function FeaturesPage() {
 
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="text-center mb-16">
-          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">৩টি ভিন্ন ভিন্ন ড্যাশবোর্ড সুবিধা</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">আপনার জীবনের প্রতিটি খাতের খরচের গতিবিধি আলাদাভাবে বিশ্লেষণ করার জন্য প্রস্তুতকৃত ড্যাশবোর্ডসমূহ।</p>
+          <h1 className="bengali-title text-4xl sm:text-5xl font-extrabold mb-4">3 Different Dashboard Options</h1>
+          <p className="text-slate-400 max-w-xl mx-auto">Pre-built dashboards designed to analyze spending trends for every area of your life.</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -30,14 +30,14 @@ export default function FeaturesPage() {
               <Coins className="h-8 w-8 text-violet-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-violet-200">দৈনন্দিন জীবন ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-violet-200">Daily Life Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                আপনার নিত্যদিনের বাজার খরচ, বাড়ি ভাড়া, বিল পরিশোধ ও যাতায়াত খরচ ট্র্যাক করুন। মাসের শেষে আপনার মূল খরচগুলো পাই-চার্টে দেখুন।
+                Track your daily groceries, rent, utilities, and transport costs. View your main expenses in a pie chart at the end of the month.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> আয় ও ব্যয় ট্র্যাকার</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> ক্যাটাগরিভিত্তিক পাই-চার্ট</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> Income & Expense Tracker</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-violet-400" /> Category-wise Pie Chart</li>
             </ul>
           </motion.div>
 
@@ -50,14 +50,14 @@ export default function FeaturesPage() {
               <Briefcase className="h-8 w-8 text-blue-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-blue-200">ব্যবসায়িক ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-blue-200">Business Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                আপনার ব্যবসার মোট রেভিনিউ বা সেলস, অপারেশনাল কস্ট, প্রফিট মার্জিন এবং ক্লায়েন্ট পেমেন্ট ট্র্যাক করুন সুনির্দিষ্টভাবে।
+                Track your business revenue, sales, operational costs, profit margins, and client payments with precision.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> প্রফিট ও লস স্টেটমেন্ট</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> রেভিনিউ ফিল্টারস</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> Profit & Loss Statement</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-blue-400" /> Revenue Filters</li>
             </ul>
           </motion.div>
 
@@ -70,14 +70,14 @@ export default function FeaturesPage() {
               <GraduationCap className="h-8 w-8 text-emerald-400" />
             </div>
             <div>
-              <h3 className="bengali-title text-2xl font-bold mb-2 text-emerald-200">শিক্ষা ব্যয় ড্যাশবোর্ড</h3>
+              <h3 className="bengali-title text-2xl font-bold mb-2 text-emerald-200">Education Dashboard</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                সেমিস্টার ফি, বই কেনা, মেস ভাড়া বা হাত খরচের হিসাব রাখুন। বাজেট অ্যালার্ট সিস্টেম আপনাকে অতিরিক্ত ব্যয় থেকে রক্ষা করবে।
+                Keep track of semester fees, books, rent, or pocket money. The budget alert system protects you from overspending.
               </p>
             </div>
             <ul className="mt-auto space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> পড়ার খরচ ও হাতখরচ বিভাজন</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> বাজেট ও প্রগ্রেস বার ট্র্যাকিং</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Study vs Pocket Money Breakdown</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Budget & Progress Bar Tracking</li>
             </ul>
           </motion.div>
         </div>
@@ -91,10 +91,10 @@ export default function FeaturesPage() {
               <Wallet className="h-5 w-5 text-indigo-400" />
             </div>
             <span className="bengali-title text-xl font-bold tracking-wider text-slate-200">
-              টাকা গেল কই ?
+              Taka Gelo Koi
             </span>
           </div>
-          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} টাকা গেল কই ? সর্বস্বত্ব সংরক্ষিত।</p>
+          <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} Taka Gelo Koi. All rights reserved.</p>
         </div>
       </footer>
     </div>
