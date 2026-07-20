@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Wallet, LogOut } from "lucide-react";
+import { Wallet, LogOut, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
 
@@ -11,6 +11,31 @@ export default function LandingNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTheme(isDark ? "dark" : "light");
+
+    const observer = new MutationObserver(() => {
+      const currentDark = document.documentElement.classList.contains("dark");
+      setTheme(currentDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   const navLinks = [
     { id: "home", label: "Home", path: "/" },
@@ -66,8 +91,15 @@ export default function LandingNavbar() {
       </div>
 
       <div className="flex items-center gap-4">
+        <button
+          onClick={toggleTheme}
+          className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-md text-slate-300 hover:text-white transition-all duration-300 hover:scale-[1.02]"
+          aria-label="Toggle Theme"
+        >
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </button>
         {isPending ? (
-          <div className="w-[180px] h-10 flex items-center justify-end">
+          <div className="w-[120px] h-10 flex items-center justify-end">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"></div>
           </div>
         ) : session ? (

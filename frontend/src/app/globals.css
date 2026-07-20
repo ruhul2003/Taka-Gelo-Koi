@@ -9,8 +9,27 @@
 }
 
 :root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --foreground-light: #1e293b;
+  --foreground-muted: #334155;
+  --foreground-muted-more: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --card-bg: #ffffff;
+}
+
+.dark {
   --background: #020617;
   --foreground: #f8fafc;
+  --foreground-light: #e2e8f0;
+  --foreground-muted: #cbd5e1;
+  --foreground-muted-more: #94a3b8;
+  --glass-bg: rgba(15, 23, 42, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --card-bg: #0f172a;
 }
 
 html {
@@ -21,6 +40,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .bengali-title {
@@ -34,16 +54,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--border-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--foreground-muted-more);
 }
 
 /* Elegant glassmorphism classes */
@@ -80,4 +100,58 @@ body {
   background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Theme Overrides for Light/Dark toggling */
+[class*="bg-slate-950"] {
+  background-color: var(--background) !important;
+  transition: background-color 0.3s ease;
+}
+
+[class*="bg-slate-900"] {
+  background-color: var(--card-bg) !important;
+  transition: background-color 0.3s ease;
+}
+
+[class*="text-slate-100"] {
+  color: var(--foreground) !important;
+  transition: color 0.3s ease;
+}
+
+[class*="text-slate-200"] {
+  color: var(--foreground-light) !important;
+  transition: color 0.3s ease;
+}
+
+[class*="text-slate-300"] {
+  color: var(--foreground-muted) !important;
+  transition: color 0.3s ease;
+}
+
+[class*="text-slate-400"] {
+  color: var(--foreground-muted-more) !important;
+  transition: color 0.3s ease;
+}
+
+[class*="text-slate-500"] {
+  color: var(--foreground-muted-more) !important;
+  transition: color 0.3s ease;
+}
+
+.glass-panel {
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[class*="border-slate-800"], [class*="border-slate-900"] {
+  border-color: var(--border-color) !important;
+  transition: border-color 0.3s ease;
+}
+
+input, select {
+  background-color: var(--card-bg) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
