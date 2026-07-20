@@ -237,7 +237,10 @@ export default function StudyDashboard() {
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
-                    onClick={() => setType("expense")}
+                    onClick={() => {
+                      setType("expense");
+                      setCategory("tuition");
+                    }}
                     className={`rounded-xl border py-2.5 text-xs font-bold transition-all ${
                       type === "expense"
                         ? "border-rose-500 bg-rose-950/20 text-rose-400"
@@ -248,7 +251,10 @@ export default function StudyDashboard() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setType("income")}
+                    onClick={() => {
+                      setType("income");
+                      setCategory("others");
+                    }}
                     className={`rounded-xl border py-2.5 text-xs font-bold transition-all ${
                       type === "income"
                         ? "border-emerald-500 bg-emerald-950/20 text-emerald-400"
@@ -260,20 +266,22 @@ export default function StudyDashboard() {
                 </div>
               </div>
 
-              <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1">ক্যাটাগরি</label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full rounded-xl bg-slate-900 border border-slate-800 px-3 py-2.5 text-sm text-slate-200 focus:border-indigo-500 outline-none"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat.value} value={cat.value} className="bg-slate-950">
-                      {cat.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {type === "expense" && (
+                <div>
+                  <label className="text-xs font-semibold text-slate-400 block mb-1">ক্যাটাগরি</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full rounded-xl bg-slate-900 border border-slate-800 px-3 py-2.5 text-sm text-slate-200 focus:border-indigo-500 outline-none"
+                  >
+                    {categories.map((cat) => (
+                      <option key={cat.value} value={cat.value} className="bg-slate-950">
+                        {cat.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div>
                 <label className="text-xs font-semibold text-slate-400 block mb-1">পরিমাণ (৳)</label>
@@ -368,13 +376,21 @@ export default function StudyDashboard() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-slate-200">
-                            {categories.find((c) => c.value === t.category)?.label.split(" (")[0] || t.category}
-                          </span>
-                          {t.description && (
-                            <span className="text-xs text-slate-500 truncate max-w-[120px] sm:max-w-xs">
-                              — {t.description}
+                          {t.type === "income" ? (
+                            <span className="text-sm font-semibold text-slate-200">
+                              {t.description || "আয় (Income)"}
                             </span>
+                          ) : (
+                            <>
+                              <span className="text-sm font-semibold text-slate-200">
+                                {categories.find((c) => c.value === t.category)?.label.split(" (")[0] || t.category}
+                              </span>
+                              {t.description && (
+                                <span className="text-xs text-slate-500 truncate max-w-[120px] sm:max-w-xs">
+                                  — {t.description}
+                                </span>
+                              )}
+                            </>
                           )}
                         </div>
                         <span className="text-[10px] text-slate-600 block mt-0.5">
