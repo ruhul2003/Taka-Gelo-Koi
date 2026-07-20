@@ -3,13 +3,21 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./auth.js";
-import { prisma } from "./db.js";
+import { db } from "./db.js";
 import { Request, Response, NextFunction } from "express";
+import { ObjectId } from "mongodb";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Helper to map MongoDB _id to string id for frontend
+const mapDoc = (doc: any) => {
+  if (!doc) return null;
+  const { _id, ...rest } = doc;
+  return { id: _id.toString(), ...rest };
+};
 
 // Enable CORS with credentials support for frontend
 app.use(cors({
@@ -86,15 +94,17 @@ app.get("/api/transactions", authenticate, async (req: AuthenticatedRequest, res
     const { dashboard } = req.query; // "daily", "business", "study"
     const userId = req.user.id;
 
-    const whereClause: any = { userId };
+    const query: any = { userId };
     if (dashboard) {
-      whereClause.dashboard = dashboard as string;
+      query.dashboard = dashboard as string;
     }
 
-    const transactions = await prisma.transaction.findMany({
-      where: whereClause,
-      orderBy: { date: "desc" }
-    });
+    const rawTransactions = await db.collection<any>("transaction")
+      .find(query)
+      .sort({ date: -1 })
+      .toArray();
+
+    const transactions = rawTransactions.map(mapDoc);
 
     res.json(transactions);
   } catch (error) {
@@ -113,25 +123,25 @@ app.post("/api/transactions", authenticate, async (req: AuthenticatedRequest, re
       return res.status(400).json({ error: "Missing required transaction fields." });
     }
 
-    // Role-based validations:
-    // If a user has a specific role, they should generally use their dashboard
-    // But we let them log transaction under daily/business/study as long as they are authenticated.
-    // However, admin cannot create transactions.
     if (req.user.role === "admin") {
       return res.status(403).json({ error: "Admins cannot record financial transactions." });
     }
 
-    const transaction = await prisma.transaction.create({
-      data: {
-        userId,
-        type,
-        category,
-        amount: parseFloat(amount),
-        description,
-        date: date ? new Date(date) : new Date(),
-        dashboard
-      }
-    });
+    const newTransaction = {
+      _id: new ObjectId().toString(),
+      userId,
+      type,
+      category,
+      amount: parseFloat(amount),
+      description,
+      date: date ? new Date(date) : new Date(),
+      dashboard,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    await db.collection<any>("transaction").insertOne(newTransaction);
+    const transaction = mapDoc(newTransaction);
 
     res.status(201).json(transaction);
   } catch (error) {
@@ -146,9 +156,7 @@ app.delete("/api/transactions/:id", authenticate, async (req: AuthenticatedReque
     const { id } = req.params;
     const userId = req.user.id;
 
-    const transaction = await prisma.transaction.findUnique({
-      where: { id }
-    });
+    const transaction = await db.collection<any>("transaction").findOne({ _id: id });
 
     if (!transaction) {
       return res.status(404).json({ error: "Transaction not found." });
@@ -158,9 +166,7 @@ app.delete("/api/transactions/:id", authenticate, async (req: AuthenticatedReque
       return res.status(403).json({ error: "Unauthorized to delete this transaction." });
     }
 
-    await prisma.transaction.delete({
-      where: { id }
-    });
+    await db.collection<any>("transaction").deleteOne({ _id: id });
 
     res.json({ message: "Transaction deleted successfully." });
   } catch (error) {
@@ -177,19 +183,27 @@ app.delete("/api/transactions/:id", authenticate, async (req: AuthenticatedReque
 // Get all users (Admin only)
 app.get("/api/admin/users", authenticate, requireAdmin, async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const users = await prisma.user.findMany({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        createdAt: true,
-        _count: {
-          select: { transactions: true }
-        }
-      },
-      orderBy: { createdAt: "desc" }
-    });
+    const rawUsers = await db.collection<any>("user")
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    const users = await Promise.all(
+      rawUsers.map(async (u) => {
+        const transCount = await db.collection<any>("transaction").countDocuments({ userId: u._id.toString() });
+        return {
+          id: u._id.toString(),
+          name: u.name,
+          email: u.email,
+          role: u.role || "user",
+          createdAt: u.createdAt,
+          _count: {
+            transactions: transCount
+          }
+        };
+      })
+    );
+
     res.json(users);
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -200,53 +214,42 @@ app.get("/api/admin/users", authenticate, requireAdmin, async (req: Authenticate
 // Get global stats (Admin only)
 app.get("/api/admin/stats", authenticate, requireAdmin, async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const totalUsers = await prisma.user.count();
+    const totalUsers = await db.collection<any>("user").countDocuments();
     
     // User counts by role
-    const rolesGroup = await prisma.user.groupBy({
-      by: ["role"],
-      _count: {
-        role: true
-      }
-    });
+    const adminCount = await db.collection<any>("user").countDocuments({ role: "admin" });
+    const userCount = await db.collection<any>("user").countDocuments({ $or: [{ role: "admin" }, { role: "user" }, { role: { $exists: false } }] });
 
     const userCountByRole = {
-      admin: 0,
-      user: 0
+      admin: adminCount,
+      user: userCount - adminCount // Make sure distinct users count is correct or just use exact count query
     };
 
-    rolesGroup.forEach((group) => {
-      const roleKey = group.role as keyof typeof userCountByRole;
-      if (roleKey in userCountByRole) {
-        userCountByRole[roleKey] = group._count.role;
-      }
-    });
-
     // Total transactions
-    const totalTransactions = await prisma.transaction.count();
+    const totalTransactions = await db.collection<any>("transaction").countDocuments();
 
-    // Sum income/expenses globally
-    const agg = await prisma.transaction.groupBy({
-      by: ["type"],
-      _sum: {
-        amount: true
-      }
-    });
+    // Sum income/expenses globally using aggregation
+    const incomeAgg = await db.collection<any>("transaction")
+      .aggregate([
+        { $match: { type: "income" } },
+        { $group: { _id: null, total: { $sum: "$amount" } } }
+      ]).toArray();
 
-    let totalIncome = 0;
-    let totalExpense = 0;
+    const expenseAgg = await db.collection<any>("transaction")
+      .aggregate([
+        { $match: { type: "expense" } },
+        { $group: { _id: null, total: { $sum: "$amount" } } }
+      ]).toArray();
 
-    agg.forEach((item) => {
-      if (item.type === "income") {
-        totalIncome = item._sum.amount || 0;
-      } else if (item.type === "expense") {
-        totalExpense = item._sum.amount || 0;
-      }
-    });
+    const totalIncome = incomeAgg[0]?.total || 0;
+    const totalExpense = expenseAgg[0]?.total || 0;
 
     res.json({
       totalUsers,
-      userCountByRole,
+      userCountByRole: {
+        admin: adminCount,
+        user: totalUsers - adminCount
+      },
       totalTransactions,
       globalFinances: {
         totalIncome,
@@ -261,6 +264,10 @@ app.get("/api/admin/stats", authenticate, requireAdmin, async (req: Authenticate
 });
 
 // Server start
-app.listen(PORT, () => {
-  console.log(`🚀 "টাকা গেল কই ?" backend running on http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 "টাকা গেল কই ?" backend running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
