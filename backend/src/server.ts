@@ -183,6 +183,139 @@ app.delete("/api/transactions/:id", authenticate, async (req: AuthenticatedReque
   }
 });
 
+/* ==========================================
+   BUDGETS & SAVINGS GOALS API
+   ========================================== */
+
+// Get user budgets
+app.get("/api/budgets", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const userId = req.user.id;
+    const budgets = await db.collection<any>("budget").find({ userId }).toArray();
+    res.json(budgets.map(mapDoc));
+  } catch (error) {
+    console.error("Error fetching budgets:", error);
+    res.status(500).json({ error: "Failed to fetch budgets." });
+  }
+});
+
+// Create or update category budget
+app.post("/api/budgets", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { category, limit } = req.body;
+    const userId = req.user.id;
+
+    if (!category || limit === undefined) {
+      return res.status(400).json({ error: "Category and limit are required." });
+    }
+
+    const filter = { userId, category };
+    const update = {
+      $set: {
+        limit: parseFloat(limit),
+        updatedAt: new Date()
+      },
+      $setOnInsert: {
+        _id: new ObjectId().toString(),
+        userId,
+        createdAt: new Date()
+      }
+    };
+
+    await db.collection<any>("budget").updateOne(filter, update, { upsert: true });
+    const saved = await db.collection<any>("budget").findOne(filter);
+    res.json(mapDoc(saved));
+  } catch (error) {
+    console.error("Error saving budget:", error);
+    res.status(500).json({ error: "Failed to save budget." });
+  }
+});
+
+// Get user savings goals
+app.get("/api/goals", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const userId = req.user.id;
+    const goals = await db.collection<any>("goal").find({ userId }).sort({ createdAt: -1 }).toArray();
+    res.json(goals.map(mapDoc));
+  } catch (error) {
+    console.error("Error fetching goals:", error);
+    res.status(500).json({ error: "Failed to fetch goals." });
+  }
+});
+
+// Add new savings goal
+app.post("/api/goals", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { name, targetAmount, currentAmount, deadline, category } = req.body;
+    const userId = req.user.id;
+
+    if (!name || targetAmount === undefined) {
+      return res.status(400).json({ error: "Name and targetAmount are required." });
+    }
+
+    const newGoal = {
+      _id: new ObjectId().toString(),
+      userId,
+      name,
+      targetAmount: parseFloat(targetAmount),
+      currentAmount: parseFloat(currentAmount) || 0,
+      deadline: deadline ? new Date(deadline) : null,
+      category: category || "General",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    await db.collection<any>("goal").insertOne(newGoal);
+    res.status(201).json(mapDoc(newGoal));
+  } catch (error) {
+    console.error("Error creating goal:", error);
+    res.status(500).json({ error: "Failed to create goal." });
+  }
+});
+
+// Delete savings goal
+app.delete("/api/goals/:id", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    const goal = await db.collection<any>("goal").findOne({ _id: id });
+    if (!goal || goal.userId !== userId) {
+      return res.status(404).json({ error: "Goal not found or unauthorized." });
+    }
+
+    await db.collection<any>("goal").deleteOne({ _id: id });
+    res.json({ message: "Goal deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting goal:", error);
+    res.status(500).json({ error: "Failed to delete goal." });
+  }
+});
+
+// User Category Analytics Breakdown
+app.get("/api/analytics/breakdown", authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const userId = req.user.id;
+    const { dashboard } = req.query;
+
+    const matchQuery: any = { userId, type: "expense" };
+    if (dashboard) matchQuery.dashboard = dashboard;
+
+    const breakdown = await db.collection<any>("transaction")
+      .aggregate([
+        { $match: matchQuery },
+        { $group: { _id: "$category", totalAmount: { $sum: "$amount" }, count: { $sum: 1 } } },
+        { $sort: { totalAmount: -1 } }
+      ])
+      .toArray();
+
+    res.json(breakdown);
+  } catch (error) {
+    console.error("Error fetching breakdown:", error);
+    res.status(500).json({ error: "Failed to fetch analytics breakdown." });
+  }
+});
+
 
 /* ==========================================
    ADMIN API
