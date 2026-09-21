@@ -2,8 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Plus, Trash2, ArrowUpRight, ArrowDownRight, Tag, CircleAlert, DollarSign } from "lucide-react";
+import { Plus, Trash2, ArrowUpRight, ArrowDownRight, Tag, CircleAlert, DollarSign, Download, UploadCloud, BarChart3, Target, Calculator } from "lucide-react";
 import { motion } from "framer-motion";
+import QuickExpensePresets from "@/components/QuickExpensePresets";
+import FinancialHealthScore from "@/components/FinancialHealthScore";
+import CategoryDonutChart from "@/components/CategoryDonutChart";
+import FinancialInsights from "@/components/FinancialInsights";
+import BudgetGoalTracker from "@/components/BudgetGoalTracker";
+import SavingsGoalTracker from "@/components/SavingsGoalTracker";
+import RecurringSubscriptions from "@/components/RecurringSubscriptions";
+import SpendingHeatmap from "@/components/SpendingHeatmap";
+import CurrencyConverter from "@/components/CurrencyConverter";
+import ZakatCalculator from "@/components/ZakatCalculator";
+import DebtLedger from "@/components/DebtLedger";
+import ImportTransactionsModal from "@/components/ImportTransactionsModal";
+import { exportTransactionsToCSV, exportTransactionsToJSON } from "@/lib/exportUtils";
 
 interface Transaction {
   id: string;
@@ -21,6 +34,8 @@ export default function DailyDashboard() {
   const [category, setCategory] = useState("food");
   const [description, setDescription] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("all");
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [activeToolTab, setActiveToolTab] = useState<"analytics" | "budget" | "utilities">("analytics");
   const [date, setDate] = useState(() => {
     const local = new Date();
     const offset = local.getTimezoneOffset();
@@ -29,6 +44,7 @@ export default function DailyDashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
 
   const categories = [
     { value: "salary", label: "বেতন (Salary)" },
@@ -117,6 +133,17 @@ export default function DailyDashboard() {
       console.error(err);
       setError("সার্ভার কানেকশন এরর।");
     }
+  };
+
+  const handleSelectPreset = (preset: { amount: number; category: string; description: string }) => {
+    setType("expense");
+    setCategory(preset.category);
+    setAmount(preset.amount.toString());
+    setDescription(preset.description);
+  };
+
+  const handleImportSuccess = (imported: any[]) => {
+    setTransactions((prev) => [...imported, ...prev]);
   };
 
   const uniqueMonths = Array.from(
@@ -212,7 +239,12 @@ export default function DailyDashboard() {
           </div>
         </div>
 
+        {/* Quick Expense Presets */}
+        <QuickExpensePresets onSelectPreset={handleSelectPreset} />
+
         <div className="grid gap-8 lg:grid-cols-3">
+
+
           {/* Log form */}
           <div className="rounded-2xl glass-panel p-6 h-fit">
             <h3 className="bengali-title text-xl font-bold mb-4 text-slate-200">নতুন হিসাব যোগ করুন</h3>
@@ -316,13 +348,40 @@ export default function DailyDashboard() {
           <div className="rounded-2xl glass-panel p-6 lg:col-span-2 flex flex-col">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <h3 className="bengali-title text-xl font-bold text-slate-200">সাম্প্রতিক লেনদেনসমূহ</h3>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-400 font-semibold">Filter Month:</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => exportTransactionsToCSV(filteredTransactions)}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors border border-slate-700/80"
+                  title="CSV এক্সপোর্ট করুন"
+                >
+                  <Download className="h-3.5 w-3.5 text-emerald-400" />
+                  <span>CSV</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => exportTransactionsToJSON(filteredTransactions)}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors border border-slate-700/80"
+                  title="JSON ব্যাকআপ ডাউনলোড"
+                >
+                  <Download className="h-3.5 w-3.5 text-indigo-400" />
+                  <span>JSON</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsImportModalOpen(true)}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors border border-slate-700/80"
+                  title="ফাইল থেকে ইমপোর্ট করুন"
+                >
+                  <UploadCloud className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Import</span>
+                </button>
                 <select
                   value={selectedMonth}
                   onChange={(e) => setSelectedMonth(e.target.value)}
                   className="rounded-xl bg-slate-900 border border-slate-800 px-3 py-1.5 text-xs text-slate-200 focus:border-indigo-500 outline-none cursor-pointer"
                 >
+
                   <option value="all">All Months</option>
                   {uniqueMonths.map((m) => {
                     const [yr, mo] = m.split("-");
@@ -488,10 +547,120 @@ export default function DailyDashboard() {
             </div>
           )}
         </div>
+
+        {/* Advanced Financial Suite & Analytics */}
+        <div className="rounded-3xl glass-panel p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-white/10 pb-5">
+            <div>
+              <h2 className="bengali-title text-2xl font-black text-slate-800 dark:text-white flex items-center gap-2.5">
+                উন্নত আর্থিক সরঞ্জাম ও বিশ্লেষণ
+                <span className="text-xs px-2.5 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-semibold">
+                  Suite
+                </span>
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                বাজেট ট্র্যাকিং, সঞ্চয় লক্ষ্যমাত্রা, যাকাত ও বৈদেশিক মুদ্রা রূপান্তর
+              </p>
+            </div>
+
+            {/* Navigation Tabs */}
+            <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <button
+                type="button"
+                onClick={() => setActiveToolTab("analytics")}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeToolTab === "analytics"
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                <BarChart3 className="h-3.5 w-3.5" />
+                <span>অ্যানালিটিক্স</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveToolTab("budget")}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeToolTab === "budget"
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                <Target className="h-3.5 w-3.5" />
+                <span>বাজেট ও গোল</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveToolTab("utilities")}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeToolTab === "utilities"
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>ক্যালকুলেটর ও লেজার</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Active Tab Views */}
+          {activeToolTab === "analytics" && (
+            <div className="space-y-6">
+              <FinancialHealthScore
+                totalIncome={totalIncome}
+                totalExpense={totalExpense}
+                balance={netBalance}
+              />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <CategoryDonutChart
+                  expensesByCategory={categoryTotals}
+                  totalExpense={totalExpense}
+                />
+                <FinancialInsights
+                  totalIncome={totalIncome}
+                  totalExpense={totalExpense}
+                  expensesByCategory={categoryTotals}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeToolTab === "budget" && (
+            <div className="space-y-6">
+              <BudgetGoalTracker expensesByCategory={categoryTotals} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <SavingsGoalTracker />
+                <RecurringSubscriptions />
+              </div>
+            </div>
+          )}
+
+          {activeToolTab === "utilities" && (
+            <div className="space-y-6">
+              <SpendingHeatmap transactions={transactions} />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <CurrencyConverter />
+                <ZakatCalculator />
+                <DebtLedger />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Import Transactions Modal */}
+        <ImportTransactionsModal
+          isOpen={isImportModalOpen}
+          onClose={() => setIsImportModalOpen(false)}
+          onImportSuccess={handleImportSuccess}
+        />
       </motion.div>
     </DashboardLayout>
   );
 }
+
 
 function cfgLabel(label: string, type: "income" | "expense") {
   if (type === "income") {

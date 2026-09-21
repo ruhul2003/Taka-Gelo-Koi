@@ -47,7 +47,9 @@ export default function LandingNavbar() {
   const navLinks = [
     { id: "home", label: "Home", path: "/" },
     { id: "features", label: "Features", path: "/features" },
-    { id: "demo", label: "Live Demo", path: "/demo" }
+    { id: "demo", label: "Live Demo", path: "/demo" },
+    { id: "reviews", label: "Reviews", path: "/reviews" },
+    { id: "faq", label: "FAQ", path: "/faq" }
   ];
 
   if (session) {
