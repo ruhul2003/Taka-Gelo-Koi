@@ -66,7 +66,7 @@ export default function LandingNavbar() {
 
   return (
     <header className="sticky top-0 z-50 mx-auto max-w-[1440px] w-full px-3 sm:px-8 py-2 sm:py-2.5">
-      <nav className="glass-panel border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between rounded-2xl backdrop-blur-md">
+      <nav className="glass-panel border-b border-slate-200/80 dark:border-slate-800/80 px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between rounded-2xl backdrop-blur-md">
         <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
           <Image
             src="/logo.png"
@@ -76,8 +76,8 @@ export default function LandingNavbar() {
             className="h-9 w-9 sm:h-11 sm:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
             priority
           />
-          <span className="bengali-title text-lg sm:text-xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
-            Taka Gelo Koi
+          <span className="bengali-title text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+            টাকা গেল <span className="text-indigo-600 dark:text-indigo-400">কই</span>
           </span>
         </Link>
 
@@ -90,14 +90,14 @@ export default function LandingNavbar() {
                 key={link.id}
                 href={link.path}
                 className={`relative text-sm font-medium transition-colors py-1 ${
-                  isActive ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-300"
+                  isActive ? "text-indigo-600 dark:text-indigo-400 font-semibold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                 }`}
               >
                 <span className="bengali-title">{link.label}</span>
                 {isActive && (
                   <motion.div
                     layoutId="landing-navbar-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -110,7 +110,7 @@ export default function LandingNavbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
+            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white transition-all duration-200"
             aria-label="Toggle Theme"
           >
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -119,24 +119,24 @@ export default function LandingNavbar() {
           <div className="hidden sm:flex items-center gap-3">
             {isPending ? (
               <div className="w-[80px] h-9 flex items-center justify-end">
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"></div>
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-600 dark:border-indigo-400 border-t-transparent"></div>
               </div>
             ) : session ? (
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02] px-4 py-2 text-xs sm:text-sm font-semibold"
+                className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white transition-all duration-200 px-4 py-2 text-xs sm:text-sm font-medium"
               >
                 <LogOut className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>Logout</span>
               </button>
             ) : (
               <>
-                <Link href="/login" className="text-sm font-semibold text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">
+                <Link href="/login" className="text-sm font-medium text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors px-2">
                   Login
                 </Link>
                 <Link 
                   href="/signup" 
-                  className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-md shadow-indigo-500/20 transition-all duration-300 hover:scale-[1.02]"
+                  className="rounded-xl bg-indigo-600 hover:bg-indigo-700 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm transition-all duration-200"
                 >
                   Sign Up
                 </Link>
@@ -147,7 +147,7 @@ export default function LandingNavbar() {
           {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-colors"
+            className="md:hidden p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white transition-colors"
             aria-label="Toggle Mobile Menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -163,9 +163,9 @@ export default function LandingNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden mt-2 p-4 rounded-2xl glass-panel border border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl space-y-3"
+            className="md:hidden mt-2 p-4 rounded-2xl glass-panel border border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-xl space-y-3"
           >
-            <div className="flex flex-col space-y-1.5">
+            <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.path;
                 return (
@@ -173,14 +173,14 @@ export default function LandingNavbar() {
                     key={link.id}
                     href={link.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-between ${
+                    className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-between ${
                       isActive
-                        ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400 font-bold"
-                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                        ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 font-semibold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60"
                     }`}
                   >
                     <span>{link.label}</span>
-                    {isActive && <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />}
+                    {isActive && <div className="h-1.5 w-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400" />}
                   </Link>
                 );
               })}
@@ -193,7 +193,7 @@ export default function LandingNavbar() {
                     setMobileMenuOpen(false);
                     handleLogout();
                   }}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-300 px-4 py-2.5 text-sm font-semibold transition-colors"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-slate-200 dark:hover:bg-slate-700"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Logout</span>
@@ -203,14 +203,14 @@ export default function LandingNavbar() {
                   <Link
                     href="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-2.5 text-sm font-semibold"
+                    className="text-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-2.5 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-center rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-4 py-2.5 text-sm font-semibold shadow-md shadow-indigo-500/20"
+                    className="text-center rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 text-sm font-semibold shadow-sm transition-colors"
                   >
                     Sign Up
                   </Link>
