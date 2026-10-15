@@ -31,35 +31,35 @@ export default function FinancialHealthScore({
     score = Math.max(5, Math.min(100, Math.round(50 + savingsComponent + balanceComponent)));
   }
 
-  let statusText = "সতর্ক থাকুন (Needs Attention)";
-  let statusColor = "text-amber-500 bg-amber-500/10 border-amber-500/20";
-  let ringColor = "from-amber-500 to-orange-500";
+  let statusText = "মনোযোগ প্রয়োজন (Needs Attention)";
+  let statusColor = "text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700";
+  let ringColor = "from-slate-500 to-slate-400";
 
   if (score >= 80) {
     statusText = "অসাধারণ অর্থনৈতিক অবস্থা (Excellent)";
-    statusColor = "text-emerald-500 bg-emerald-500/10 border-emerald-500/20";
-    ringColor = "from-emerald-500 to-teal-400";
+    statusColor = "text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/20";
+    ringColor = "from-indigo-600 to-indigo-400";
   } else if (score >= 60) {
     statusText = "ভালো ও স্থিতিশীল (Good & Stable)";
     statusColor = "text-indigo-500 bg-indigo-500/10 border-indigo-500/20";
-    ringColor = "from-indigo-500 to-cyan-400";
+    ringColor = "from-indigo-500 to-indigo-400";
   } else if (score < 40) {
     statusText = "উদ্বেগজনক মাত্রা (Critical Alert)";
-    statusColor = "text-rose-500 bg-rose-500/10 border-rose-500/20";
-    ringColor = "from-rose-500 to-red-600";
+    statusColor = "text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-800 border-slate-400 dark:border-slate-600";
+    ringColor = "from-slate-700 to-slate-500";
   }
 
   return (
-    <div className="glass-panel p-6 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl">
+    <div className="glass-panel p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-teal-500/10 dark:bg-teal-500/20 text-teal-600 dark:text-teal-400 border border-teal-500/20">
+          <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/50">
             <Activity className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <h3 className="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
               ফাইন্যান্সিয়াল হেলথ স্কোর
-              <span className="text-xs px-2 py-0.5 rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-300 font-semibold">
+              <span className="text-xs px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold border border-indigo-100 dark:border-indigo-900/40">
                 Health Meter
               </span>
             </h3>
@@ -75,7 +75,7 @@ export default function FinancialHealthScore({
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
         {/* Score Circular Progress Visual */}
-        <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+        <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
           <div className="relative w-28 h-28 flex items-center justify-center">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               <circle
@@ -115,17 +115,17 @@ export default function FinancialHealthScore({
 
         {/* Breakdown Stats */}
         <div className="md:col-span-2 space-y-3">
-          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/70 border border-slate-200/50 dark:border-white/5">
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-800">
             <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1.5">
               <span>সঞ্চয়ের হার (Savings Rate)</span>
-              <span className="text-teal-600 dark:text-teal-400 font-bold">{savingsRate}%</span>
+              <span className="text-indigo-600 dark:text-indigo-400 font-bold">{savingsRate}%</span>
             </div>
             <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(100, savingsRate)}%` }}
                 transition={{ duration: 0.8 }}
-                className="h-full bg-gradient-to-r from-teal-500 to-indigo-500 rounded-full"
+                className="h-full bg-indigo-600 dark:bg-indigo-500 rounded-full"
               />
             </div>
             <span className="text-[11px] text-slate-400 mt-1 block">
@@ -134,13 +134,13 @@ export default function FinancialHealthScore({
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div className="p-3 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20">
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 block">নেট অবশিষ্ট ব্যালেন্স</span>
-              <span className={`text-base font-extrabold ${balance >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"}`}>
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 block">অবশিষ্ট ব্যালেন্স</span>
+              <span className={`text-base font-extrabold ${balance >= 0 ? "text-indigo-600 dark:text-indigo-400" : "text-slate-600 dark:text-slate-400"}`}>
                 ৳ {balance.toLocaleString()}
               </span>
             </div>
-            <div className="p-3 rounded-xl bg-indigo-500/5 dark:bg-indigo-500/10 border border-indigo-500/20">
+            <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/40">
               <span className="text-[11px] text-slate-500 dark:text-slate-400 block">ব্যয়-আয় অনুপাত</span>
               <span className="text-base font-extrabold text-indigo-600 dark:text-indigo-400">
                 {totalIncome > 0 ? ((totalExpense / totalIncome) * 100).toFixed(0) : 0}%
@@ -152,3 +152,4 @@ export default function FinancialHealthScore({
     </div>
   );
 }
+

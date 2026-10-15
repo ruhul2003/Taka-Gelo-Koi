@@ -10,13 +10,13 @@ interface CategoryDonutChartProps {
 }
 
 const CATEGORY_META: Record<string, { label: string; color: string }> = {
-  food: { label: "খাবার (Food)", color: "#f97316" },
-  rent: { label: "বাসা ভাড়া (Rent)", color: "#8b5cf6" },
-  bills: { label: "ইউটিলিটি বিল (Bills)", color: "#06b6d4" },
-  shopping: { label: "শপিং (Shopping)", color: "#ec4899" },
-  transport: { label: "যাতায়াত (Transport)", color: "#3b82f6" },
-  entertainment: { label: "বিনোদন (Entertainment)", color: "#eab308" },
-  others: { label: "অন্যান্য (Others)", color: "#64748b" }
+  food: { label: "খাবার (Food)", color: "#4f46e5" },
+  rent: { label: "বাসা ভাড়া (Rent)", color: "#6366f1" },
+  bills: { label: "ইউটিলিটি বিল (Bills)", color: "#818cf8" },
+  shopping: { label: "শপিং (Shopping)", color: "#a5b4fc" },
+  transport: { label: "যাতায়াত (Transport)", color: "#475569" },
+  entertainment: { label: "বিনোদন (Entertainment)", color: "#64748b" },
+  others: { label: "অন্যান্য (Others)", color: "#94a3b8" }
 };
 
 export default function CategoryDonutChart({ expensesByCategory, totalExpense }: CategoryDonutChartProps) {
@@ -30,26 +30,26 @@ export default function CategoryDonutChart({ expensesByCategory, totalExpense }:
   let cumulativeOffset = 0;
 
   return (
-    <div className="glass-panel p-6 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl">
+    <div className="rounded-2xl border border-slate-200 dark:border-slate-800/80 p-6 shadow-sm bg-white dark:bg-slate-900/60 backdrop-blur-md">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+          <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/80 dark:border-indigo-800/60">
             <PieIcon className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
-              খাতভিত্তিক খরচের চার্ট (Donut Chart)
-              <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 font-semibold">
+            <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              খাতভিত্তিক খরচের চার্ট
+              <span className="text-[10px] uppercase px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 font-bold">
                 Analytics
               </span>
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              কোন খাতে কত শতাংশ ব্যয় হয়েছে তার চিত্র
+              কোন খাতে কত শতাংশ ব্যয় হয়েছে তার নিখুঁত চিত্র
             </p>
           </div>
         </div>
 
-        <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+        <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
           মোট: ৳{totalExpense.toLocaleString()}
         </span>
       </div>
