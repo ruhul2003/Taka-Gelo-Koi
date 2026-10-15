@@ -83,196 +83,79 @@ export default function LandingPage() {
   return (
     <>
 
-      {/* Hero Section - Full Screen with Random Scattered Finance Constellation */}
-      <section className="relative z-10 mx-auto max-w-[1440px] w-full px-4 xl:px-12 min-h-[calc(100vh-120px)] flex flex-col items-center justify-center text-center py-12 overflow-hidden">
-        {/* Ambient Glowing Orbs Background */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[400px] bg-gradient-to-tr from-violet-600/20 via-indigo-600/20 to-cyan-500/10 rounded-full blur-[130px] pointer-events-none" />
-
-        {/* Scattered Item 1: Income Badge (Top Far Left) */}
-        <motion.div
-          animate={{ y: [0, -18, 0], rotate: [-7, 3, -7] }}
-          whileHover={{ x: 18, y: -22, scale: 1.08, rotate: 10, transition: { type: "spring", stiffness: 200, damping: 12 } }}
-          transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
-          className="hidden xl:flex absolute top-[6%] left-[2%] items-center gap-3 glass-panel px-4 py-3 rounded-2xl border border-emerald-500/30 shadow-xl shadow-emerald-500/10 backdrop-blur-xl z-20 cursor-pointer"
-        >
-          <div className="rounded-xl bg-emerald-500/20 p-2.5 text-emerald-400">
-            <TrendingUp className="h-5 w-5" />
-          </div>
-          <div className="text-left">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">নতুন আয় যোগ</p>
-            <p className="text-sm font-extrabold text-emerald-400">+১৫,০০০ ৳</p>
-          </div>
-        </motion.div>
-
-        {/* Scattered Item 2: Credit Card Icon (Top Mid Left) */}
-        <motion.div
-          animate={{ y: [0, 16, 0], rotate: [14, -6, 14] }}
-          whileHover={{ x: -24, y: -16, scale: 1.12, rotate: -18, transition: { type: "spring", stiffness: 180, damping: 10 } }}
-          transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.2 }}
-          className="hidden lg:flex absolute top-[16%] left-[19%] rounded-2xl bg-indigo-500/15 border border-indigo-500/30 p-3.5 text-indigo-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <CreditCard className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 3: Coins Icon (Top Upper Center Right) */}
-        <motion.div
-          animate={{ y: [0, -14, 0], rotate: [-12, 8, -12] }}
-          whileHover={{ x: 20, y: -28, scale: 1.15, rotate: 22, transition: { type: "spring", stiffness: 220, damping: 14 } }}
-          transition={{ repeat: Infinity, duration: 5.4, ease: "easeInOut", delay: 0.7 }}
-          className="hidden lg:flex absolute top-[5%] right-[28%] rounded-2xl bg-amber-500/15 border border-amber-500/30 p-3.5 text-amber-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <Coins className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 4: Savings Badge (Top Far Right) */}
-        <motion.div
-          animate={{ y: [0, 15, 0], rotate: [6, -3, 6] }}
-          whileHover={{ x: -20, y: 18, scale: 1.09, rotate: -12, transition: { type: "spring", stiffness: 200, damping: 11 } }}
-          transition={{ repeat: Infinity, duration: 4.6, ease: "easeInOut", delay: 0.4 }}
-          className="hidden xl:flex absolute top-[12%] right-[1%] items-center gap-3 glass-panel px-4 py-3 rounded-2xl border border-violet-500/30 shadow-xl shadow-violet-500/10 backdrop-blur-xl z-20 cursor-pointer"
-        >
-          <div className="rounded-xl bg-violet-500/20 p-2.5 text-violet-400">
-            <Wallet className="h-5 w-5" />
-          </div>
-          <div className="text-left">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">মাসিক সেভিংস</p>
-            <p className="text-sm font-extrabold text-violet-400">৮৫% টার্গেট অর্জিত</p>
-          </div>
-        </motion.div>
-
-        {/* Scattered Item 5: Dollar Icon (Middle Far Left) */}
-        <motion.div
-          animate={{ y: [0, -18, 0], rotate: [4, -8, 4] }}
-          whileHover={{ x: 30, y: 20, scale: 1.13, rotate: 15, transition: { type: "spring", stiffness: 190, damping: 10 } }}
-          transition={{ repeat: Infinity, duration: 5.1, ease: "easeInOut", delay: 1.1 }}
-          className="hidden lg:flex absolute top-[40%] left-[4%] rounded-2xl bg-emerald-500/15 border border-emerald-500/30 p-3.5 text-emerald-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <DollarSign className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 6: Receipt Icon (Middle Right Outer) */}
-        <motion.div
-          animate={{ y: [0, 14, 0], rotate: [-18, 5, -18] }}
-          whileHover={{ x: -26, y: -20, scale: 1.1, rotate: 20, transition: { type: "spring", stiffness: 210, damping: 13 } }}
-          transition={{ repeat: Infinity, duration: 4.7, ease: "easeInOut", delay: 1.5 }}
-          className="hidden lg:flex absolute top-[35%] right-[12%] rounded-2xl bg-rose-500/15 border border-rose-500/30 p-3.5 text-rose-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <Receipt className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 7: Briefcase Icon (Lower Mid Left) */}
-        <motion.div
-          animate={{ y: [0, -13, 0], rotate: [15, -4, 15] }}
-          whileHover={{ x: 22, y: -24, scale: 1.14, rotate: -20, transition: { type: "spring", stiffness: 230, damping: 12 } }}
-          transition={{ repeat: Infinity, duration: 5.3, ease: "easeInOut", delay: 0.9 }}
-          className="hidden lg:flex absolute top-[62%] left-[21%] rounded-2xl bg-blue-500/15 border border-blue-500/30 p-3.5 text-blue-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <Briefcase className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 8: Target Icon (Lower Mid Right) */}
-        <motion.div
-          animate={{ y: [0, 15, 0], rotate: [-10, 6, -10] }}
-          whileHover={{ x: -18, y: 26, scale: 1.11, rotate: 16, transition: { type: "spring", stiffness: 200, damping: 11 } }}
-          transition={{ repeat: Infinity, duration: 4.9, ease: "easeInOut", delay: 1.3 }}
-          className="hidden lg:flex absolute bottom-[26%] right-[25%] rounded-2xl bg-cyan-500/15 border border-cyan-500/30 p-3.5 text-cyan-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <Target className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 9: Analytics Badge (Bottom Far Left) */}
-        <motion.div
-          animate={{ y: [0, -12, 0], rotate: [-4, 6, -4] }}
-          whileHover={{ x: 24, y: -18, scale: 1.08, rotate: -10, transition: { type: "spring", stiffness: 195, damping: 12 } }}
-          transition={{ repeat: Infinity, duration: 5.2, ease: "easeInOut", delay: 1.0 }}
-          className="hidden xl:flex absolute bottom-[14%] left-[3%] items-center gap-3 glass-panel px-4 py-3 rounded-2xl border border-indigo-500/30 shadow-xl shadow-indigo-500/10 backdrop-blur-xl z-20 cursor-pointer"
-        >
-          <div className="rounded-xl bg-indigo-500/20 p-2.5 text-indigo-400">
-            <PieChart className="h-5 w-5" />
-          </div>
-          <div className="text-left">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">স্মার্ট রিপোর্ট</p>
-            <p className="text-sm font-extrabold text-indigo-300">পাই-চার্ট ট্র্যাকিং</p>
-          </div>
-        </motion.div>
-
-        {/* Scattered Item 10: Lock Icon (Bottom Mid Center-Left) */}
-        <motion.div
-          animate={{ y: [0, -16, 0], rotate: [8, -12, 8] }}
-          whileHover={{ x: -28, y: 22, scale: 1.16, rotate: 18, transition: { type: "spring", stiffness: 220, damping: 10 } }}
-          transition={{ repeat: Infinity, duration: 4.4, ease: "easeInOut", delay: 1.7 }}
-          className="hidden lg:flex absolute bottom-[8%] left-[28%] rounded-2xl bg-purple-500/15 border border-purple-500/30 p-3.5 text-purple-400 backdrop-blur-md shadow-xl z-10 cursor-pointer"
-        >
-          <Lock className="h-6 w-6" />
-        </motion.div>
-
-        {/* Scattered Item 11: Security Badge (Bottom Far Right) */}
-        <motion.div
-          animate={{ y: [0, 12, 0], rotate: [4, -3, 4] }}
-          whileHover={{ x: -22, y: -26, scale: 1.09, rotate: 14, transition: { type: "spring", stiffness: 205, damping: 11 } }}
-          transition={{ repeat: Infinity, duration: 4.4, ease: "easeInOut", delay: 1.4 }}
-          className="hidden xl:flex absolute bottom-[6%] right-[2%] items-center gap-3 glass-panel px-4 py-3 rounded-2xl border border-blue-500/30 shadow-xl shadow-blue-500/10 backdrop-blur-xl z-20 cursor-pointer"
-        >
-          <div className="rounded-xl bg-blue-500/20 p-2.5 text-blue-400">
-            <ShieldCheck className="h-5 w-5" />
-          </div>
-          <div className="text-left">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">এনক্রিপ্টেড ডাটা</p>
-            <p className="text-sm font-extrabold text-blue-400">১০০% তথ্য সুরক্ষা</p>
-          </div>
-        </motion.div>
-
+      {/* Minimal Hero Section */}
+      <section className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-140px)] flex flex-col items-center justify-center text-center py-16 lg:py-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center gap-6 my-auto z-10"
+          className="flex flex-col items-center gap-6 max-w-4xl mx-auto"
         >
-          {/* Tag */}
+          {/* Minimal Tag Pill */}
           <motion.div 
             variants={itemVariants} 
-            className="flex items-center gap-2 rounded-full bg-indigo-950/60 border border-indigo-800/50 px-4 py-1.5 text-sm font-medium text-indigo-300 backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-full border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/80 dark:bg-indigo-950/40 px-3.5 py-1.5 text-xs font-medium text-indigo-700 dark:text-indigo-300 backdrop-blur-sm"
           >
-            <Sparkles className="h-4 w-4 text-indigo-400" />
-            <span>স্মার্ট ফাইন্যান্স ট্র্যাকিং সিস্টেম</span>
+            <Sparkles className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+            <span>স্মার্ট পার্সোনাল ফাইন্যান্স ম্যানেজার</span>
           </motion.div>
 
-          {/* Bengali Stylish Title */}
+          {/* Clean High-Contrast Headline */}
           <motion.h1 
             variants={itemVariants}
-            className="bengali-title max-w-4xl text-5xl sm:text-7xl font-black leading-[1.15] tracking-tight"
+            className="bengali-title text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.18] tracking-tight text-slate-900 dark:text-slate-50"
           >
             আপনার প্রতিদিনের হিসাব, <br />
-            <span className="bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
-              নিরাপদ ও সহজ
+            <span className="text-indigo-600 dark:text-indigo-400">
+              সহজ ও নির্ভুল
             </span> উপায়ে।
           </motion.h1>
 
+          {/* Minimal Subtitle */}
           <motion.p 
             variants={itemVariants}
-            className="max-w-2xl text-lg text-slate-600 dark:text-slate-400 font-normal leading-relaxed"
+            className="max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-400 font-normal leading-relaxed"
           >
-            দৈনন্দিন খরচ, ব্যবসার লাভ-ক্ষতি অথবা শিক্ষার্থীদের পড়াশোনার খরচের হিসাব আলাদা আলাদা ড্যাশবোর্ডে ট্র্যাক করুন পেশাদার অ্যানালিটিক্স সহ।
+            দৈনন্দিন খরচ, ব্যবসার হিসাব কিংবা পড়াশোনার বাজেট—সবকিছু ট্র্যাক করুন একক মিনিমাল ড্যাশবোর্ডে কোন বাড়তি ঝামেলা ছাড়াই।
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Primary and Secondary CTA Buttons */}
           <motion.div 
             variants={itemVariants}
-            className="mt-4 flex flex-wrap gap-4 justify-center"
+            className="mt-2 flex flex-wrap gap-3.5 justify-center"
           >
             <Link 
               href="/signup" 
-              className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 px-8 py-4 text-base font-bold text-white shadow-xl shadow-indigo-500/20 transition-all duration-300 hover:scale-[1.03]"
+              className="group flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200"
             >
-              <span>হিসাব রাখা শুরু করুন</span>
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <span>হিসাব শুরু করুন</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link 
               href="/login" 
-              className="rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:hover:border-slate-700 dark:text-white px-8 py-4 text-base font-bold transition-all duration-300"
+              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 px-7 py-3.5 text-sm font-semibold transition-all duration-200"
             >
-              ড্যাশবোর্ডে প্রবেশ করুন
+              ড্যাশবোর্ড ডেমো
             </Link>
+          </motion.div>
+
+          {/* Minimal Key Metrics Bar */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 grid grid-cols-3 gap-3 sm:gap-6 w-full max-w-2xl pt-6 border-t border-slate-200 dark:border-slate-800/80"
+          >
+            <div className="text-center">
+              <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">১০০%</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">তথ্য নিরাপত্তা</p>
+            </div>
+            <div className="text-center border-x border-slate-200 dark:border-slate-800/80">
+              <p className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">৩টি</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">ডেডিকেটেড মোড</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">ফ্রি</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">আজীবন ব্যবহার</p>
+            </div>
           </motion.div>
         </motion.div>
       </section>
