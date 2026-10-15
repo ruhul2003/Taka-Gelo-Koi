@@ -354,75 +354,75 @@ export default function LandingPage() {
       </section>
 
       {/* User Reviews Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 border-t border-slate-900">
-        <div className="text-center mb-16">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">User Testimonials</h2>
-          <p className="mt-4 text-slate-400 max-w-xl mx-auto">Hear from users who successfully controlled their expenses using Taka Gelo Koi.</p>
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 border-t border-slate-200 dark:border-slate-800/80">
+        <div className="text-center mb-14">
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-slate-100">ব্যবহারকারীদের অভিজ্ঞতা</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-base">যাদের প্রতিদিনের অর্থ ব্যবস্থাপনাকে সহজ করেছে আমাদের সিস্টেম।</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          <div className="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-            <div className="flex text-amber-400 gap-1">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/50 p-6 flex flex-col gap-4">
+            <div className="flex text-indigo-600 dark:text-indigo-400 gap-1">
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-indigo-600 dark:fill-indigo-400" />)}
             </div>
-            <p className="text-sm text-slate-300 leading-relaxed italic">
-              &quot;I used to struggle balancing my mess food costs and pocket money every month. Now everything is in one place.&quot;
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+              &quot;মেসের বাজার খরচ এবং পড়াশোনার হাতখরচ মেলানো খুব কঠিন ছিল। এখন মাস শেষে সহজেই ব্যালেন্স বুঝতে পারি।&quot;
             </p>
-            <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">Rakib Hossain</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">Student, University of Dhaka</span>
+            <div className="mt-auto pt-2 border-t border-slate-100 dark:border-slate-800/60">
+              <h5 className="text-xs font-bold text-slate-900 dark:text-slate-100">রাকিব হোসেন</h5>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">শিক্ষার্থী, ঢাকা বিশ্ববিদ্যালয়</span>
             </div>
           </div>
 
-          <div className="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-            <div className="flex text-amber-400 gap-1">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/50 p-6 flex flex-col gap-4">
+            <div className="flex text-indigo-600 dark:text-indigo-400 gap-1">
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-indigo-600 dark:fill-indigo-400" />)}
             </div>
-            <p className="text-sm text-slate-300 leading-relaxed italic">
-              &quot;It plays a wonderful role in matching revenue and courier costs for my online clothing store.&quot;
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+              &quot;আমার অনলাইন শপের কুরিয়ার বিল ও দৈনিক লাভ-ক্ষতি ক্যালকুলেট করার জন্য এর চেয়ে নিখুঁত টুল আর পাইনি।&quot;
             </p>
-            <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">Fariha Akhter</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">F-Commerce Entrepreneur</span>
+            <div className="mt-auto pt-2 border-t border-slate-100 dark:border-slate-800/60">
+              <h5 className="text-xs font-bold text-slate-900 dark:text-slate-100">ফারিহা আক্তার</h5>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">উদ্যোক্তা, এফ-কমার্স</span>
             </div>
           </div>
 
-          <div className="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-            <div className="flex text-amber-400 gap-1">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400" />)}
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/50 p-6 flex flex-col gap-4">
+            <div className="flex text-indigo-600 dark:text-indigo-400 gap-1">
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-indigo-600 dark:fill-indigo-400" />)}
             </div>
-            <p className="text-sm text-slate-300 leading-relaxed italic">
-              &quot;This dashboard helped me identify the exact flow of my family&apos;s monthly groceries and utility bills.&quot;
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+              &quot;সংসারের মাসিক কেনাকাটা এবং ইউটিলিটি বিলের স্বচ্ছ হিসাব পরিবারে বাজেট নিয়ন্ত্রণ এনে দিয়েছে।&quot;
             </p>
-            <div className="mt-auto">
-              <h5 className="text-xs font-bold text-slate-100">Mahmud Hasan</h5>
-              <span className="text-[10px] text-slate-500 font-semibold">Software Engineer</span>
+            <div className="mt-auto pt-2 border-t border-slate-100 dark:border-slate-800/60">
+              <h5 className="text-xs font-bold text-slate-900 dark:text-slate-100">মাহমুদ হাসান</h5>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">সফটওয়্যার প্রকৌশলী</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="relative z-10 mx-auto max-w-4xl px-6 py-20 border-t border-slate-900">
+      <section className="relative z-10 mx-auto max-w-4xl px-6 py-20 border-t border-slate-200 dark:border-slate-800/80">
         <div className="text-center mb-12">
-          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold">Frequently Asked Questions</h2>
-          <p className="mt-3 text-slate-400">Find answers to common questions about Taka Gelo Koi below.</p>
+          <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-slate-100">সাধারণ জিজ্ঞাসা (FAQ)</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm sm:text-base">টাকা গেল কই সংক্রান্ত সাধারণ প্রশ্নের উত্তর জেনে নিন।</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = !!faqOpen[index];
             return (
               <div 
                 key={index} 
-                className="glass-panel rounded-xl overflow-hidden border border-slate-900"
+                className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/50 transition-colors"
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="w-full flex justify-between items-center px-6 py-4 text-left font-bold text-slate-200 hover:text-slate-100 text-sm sm:text-base outline-none transition-colors"
+                  className="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-slate-900 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm sm:text-base outline-none transition-colors cursor-pointer"
                 >
                   <span className="bengali-title">{faq.q}</span>
-                  <ChevronDown className={`h-4.5 w-4.5 text-slate-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 ${isOpen ? "rotate-180 text-indigo-600 dark:text-indigo-400" : ""}`} />
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -432,7 +432,7 @@ export default function LandingPage() {
                       exit={{ height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-5 pt-1 text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-slate-900/50">
+                      <div className="px-6 pb-5 pt-1 text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-slate-100 dark:border-slate-800/60">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -445,46 +445,48 @@ export default function LandingPage() {
       </section>
 
       {/* Trust & Safety Features */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 border-t border-slate-900">
-        <div className="grid gap-12 md:grid-cols-2 items-center">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 border-t border-slate-200 dark:border-slate-800/80">
+        <div className="grid gap-10 md:grid-cols-2 items-center">
           <div>
-            <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">
-              Security and Role-Based <br />
-              Sign-Up Approach
+            <h2 className="bengali-title text-3xl sm:text-4xl font-extrabold mb-6 leading-tight text-slate-900 dark:text-slate-100">
+              নিরাপত্তা ও সুরক্ষিত <br />
+              অ্যাক্সেস কন্ট্রোল
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="flex gap-4">
-                <div className="rounded-xl bg-slate-900 border border-slate-800 p-3 h-fit">
-                  <ShieldCheck className="h-6 w-6 text-indigo-400" />
+                <div className="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/60 p-3 h-fit text-indigo-600 dark:text-indigo-400">
+                  <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-slate-200">Role-Based Access Control (RBAC)</h4>
-                  <p className="text-slate-400 text-sm mt-1">You will be redirected to your specific category dashboard right after logging in.</p>
+                  <h4 className="text-base font-bold text-slate-900 dark:text-slate-100">রোল-ভিত্তিক অ্যাক্সেস সুবিধা</h4>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">লগইন করার সাথে সাথেই আপনাকে আপনার পছন্দের নির্দিষ্ট ড্যাশবোর্ডে নিয়ে যাওয়া হবে।</p>
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="rounded-xl bg-slate-900 border border-slate-800 p-3 h-fit">
-                  <PieChart className="h-6 w-6 text-indigo-400" />
+                <div className="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/60 p-3 h-fit text-indigo-600 dark:text-indigo-400">
+                  <PieChart className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-slate-200">Real-Time Graphical Analytics</h4>
-                  <p className="text-slate-400 text-sm mt-1">See your expense-to-income ratio directly through a beautiful animated interface.</p>
+                  <h4 className="text-base font-bold text-slate-900 dark:text-slate-100">রিয়েল-টাইম গ্রাফিক্যাল অ্যানালিটিক্স</h4>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">আয় ও ব্যয়ের অনুপাত সরাসরি পরিষ্কার ও মিনিমাল ভিজ্যুয়াল ইন্টারফেসে পর্যবেক্ষণ করুন।</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="rounded-3xl bg-gradient-to-tr from-indigo-600/10 to-violet-600/10 border border-slate-800 p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl" />
-            <TrendingUp className="h-16 w-16 text-indigo-400 mb-6 animate-pulse" />
-            <h3 className="bengali-title text-2xl font-extrabold text-slate-100">Saving Money is Now Easier!</h3>
-            <p className="text-slate-400 text-sm max-w-sm mt-3 mb-6">
-              Start tracking today and see where your money goes instantly.
+
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 p-8 flex flex-col justify-center items-center text-center">
+            <div className="rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/60 p-4 mb-5 text-indigo-600 dark:text-indigo-400">
+              <TrendingUp className="h-8 w-8" />
+            </div>
+            <h3 className="bengali-title text-2xl font-bold text-slate-900 dark:text-slate-100">অর্থ সাশ্রয় এখন আরও সহজ</h3>
+            <p className="text-slate-600 dark:text-slate-400 text-sm max-w-sm mt-2 mb-6">
+              আজই হিসাব রাখা শুরু করুন এবং নিজের অর্থ ব্যবহারের নিয়ন্ত্রণ নিজের হাতে নিন।
             </p>
             <Link 
               href="/signup" 
-              className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 px-6 py-3 text-sm font-semibold transition-all duration-300"
+              className="rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-7 py-3 text-sm font-semibold transition-colors shadow-sm"
             >
-              Create New Account
+              নতুন অ্যাকাউন্ট তৈরি করুন
             </Link>
           </div>
         </div>
