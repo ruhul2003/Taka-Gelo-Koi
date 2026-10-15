@@ -36,10 +36,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-indigo-500 overflow-x-hidden">
-      {/* Background Gradient Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-violet-900/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[-10%] h-[600px] w-[600px] rounded-full bg-blue-900/10 blur-[150px] pointer-events-none" />
+    <div className="relative min-h-screen flex flex-col bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 selection:bg-indigo-500 selection:text-white overflow-x-hidden transition-colors duration-200">
+      {/* Subtle Minimal Primary Ambient Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[360px] bg-indigo-500/[0.04] dark:bg-indigo-500/[0.06] blur-[120px] pointer-events-none" />
       
       <LandingNavbar />
       <main className="flex-grow w-full relative z-10">
@@ -47,14 +46,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </main>
       <Footer />
 
-      {/* Floating Scroll to Top Button */}
+      {/* Minimal Floating Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-8 right-8 z-50 p-3.5 rounded-2xl bg-indigo-600/90 hover:bg-indigo-500 text-white shadow-xl shadow-indigo-600/30 backdrop-blur-md border border-indigo-400/30 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
+          className="fixed bottom-6 right-6 z-50 p-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md border border-indigo-500/20 transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer"
         >
-          <ArrowUp className="h-5 w-5 stroke-[2.5]" />
+          <ArrowUp className="h-4 w-4 stroke-[2.5]" />
         </button>
       )}
     </div>
