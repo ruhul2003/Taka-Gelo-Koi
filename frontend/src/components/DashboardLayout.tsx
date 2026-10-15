@@ -107,9 +107,9 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100">
+    <div className="flex min-h-screen flex-col bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* Header */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-2.5 sm:py-3 shadow-lg backdrop-blur-md">
+      <header className="sticky top-0 z-50 glass-panel border-b border-slate-200/80 dark:border-slate-800/80 px-6 py-2.5 sm:py-3 shadow-sm backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3 cursor-pointer shrink-0 group" onClick={() => router.push("/")}>
             <Image
@@ -117,11 +117,11 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
               alt="Taka Gelo Koi Logo"
               width={48}
               height={48}
-              className="h-9 w-9 sm:h-11 sm:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-9 w-9 sm:h-11 sm:w-11 object-contain transition-transform duration-200 group-hover:scale-105"
               priority
             />
-            <span className="bengali-title text-lg sm:text-xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
-              Taka Gelo Koi
+            <span className="bengali-title text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+              টাকা গেল <span className="text-indigo-600 dark:text-indigo-400">কই</span>
             </span>
           </div>
 
@@ -134,14 +134,14 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
                   key={link.id}
                   href={link.path}
                   className={`relative text-sm font-medium transition-colors py-1.5 ${
-                    isActive ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-300"
+                    isActive ? "text-indigo-600 dark:text-indigo-400 font-semibold" : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                   }`}
                 >
                   <span className="bengali-title">{link.label}</span>
                   {isActive && (
                     <motion.div
                       layoutId="landing-navbar-underline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -150,31 +150,31 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
             })}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:scale-[1.02]"
+              className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white transition-all duration-200"
               aria-label="Toggle Theme"
             >
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
-            <div className="flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-900/80 px-4 py-2 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100">
+            <div className="flex items-center gap-2 rounded-xl bg-white dark:bg-slate-900 px-3.5 py-1.5 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200">
               {user.role === "admin" ? (
-                <Shield className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <Shield className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               ) : (
                 <UserIcon className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               )}
-              <span className="text-sm font-semibold max-w-[120px] truncate">{user.name}</span>
-              <span className="text-xs uppercase bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 px-2 py-0.5 rounded-full font-extrabold">
+              <span className="text-xs font-semibold max-w-[120px] truncate">{user.name}</span>
+              <span className="text-[10px] uppercase bg-indigo-50 text-indigo-700 dark:bg-indigo-950/80 dark:text-indigo-300 px-2 py-0.5 rounded-full font-bold">
                 {user.role}
               </span>
             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-slate-300 dark:hover:text-white transition-all duration-300 px-5 py-2.5 text-sm font-semibold hover:scale-[1.02]"
+              className="flex items-center gap-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white transition-all duration-200 px-4 py-2 text-xs font-semibold"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-3.5 w-3.5" />
               <span>Logout</span>
             </button>
           </div>
@@ -183,14 +183,14 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
 
       {/* Sub-Header Navigation for Normal Users */}
       {user && user.role !== "admin" && (
-        <div className="border-b border-slate-200 dark:border-slate-900 bg-slate-100/80 dark:bg-slate-950 px-6 py-3">
-          <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-x-auto">
+        <div className="border-b border-slate-200 dark:border-slate-800/80 bg-white/60 dark:bg-slate-950/60 backdrop-blur-md px-6 py-2.5">
+          <div className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto">
             <button
               onClick={() => router.push("/dashboard/daily")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all border shrink-0 ${
                 allowedRole === "daily"
-                  ? "bg-emerald-100 text-emerald-700 border-emerald-500 dark:bg-emerald-950/45 dark:text-emerald-400 dark:border-emerald-500 shadow-sm"
-                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-emerald-950/40 dark:hover:text-emerald-300"
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                  : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
             >
               <Coins className="h-3.5 w-3.5" />
@@ -198,10 +198,10 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
             </button>
             <button
               onClick={() => router.push("/dashboard/business")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all border shrink-0 ${
                 allowedRole === "business"
-                  ? "bg-blue-100 text-blue-700 border-blue-500 dark:bg-blue-950/45 dark:text-blue-400 dark:border-blue-500 shadow-sm"
-                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-blue-950/40 dark:hover:text-blue-300"
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                  : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
             >
               <Briefcase className="h-3.5 w-3.5" />
@@ -209,10 +209,10 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
             </button>
             <button
               onClick={() => router.push("/dashboard/study")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-extrabold transition-all border shrink-0 ${
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all border shrink-0 ${
                 allowedRole === "study"
-                  ? "bg-purple-100 text-purple-700 border-purple-500 dark:bg-purple-950/45 dark:text-purple-400 dark:border-purple-500 shadow-sm"
-                  : "bg-slate-100/80 text-slate-600 border-slate-200 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-300 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/80 dark:hover:bg-purple-950/40 dark:hover:text-purple-300"
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                  : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
             >
               <GraduationCap className="h-3.5 w-3.5" />
@@ -228,7 +228,7 @@ export default function DashboardLayout({ children, allowedRole }: DashboardLayo
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
           >
             {children}
           </motion.div>
