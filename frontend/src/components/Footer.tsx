@@ -58,29 +58,29 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full border-t border-slate-200/80 dark:border-slate-900 bg-slate-100/90 dark:bg-slate-950/90 backdrop-blur-md text-slate-800 dark:text-slate-200 shrink-0 transition-colors duration-300">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 py-16">
+    <footer className="w-full border-t border-slate-200 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-950/80 backdrop-blur-md text-slate-800 dark:text-slate-200 shrink-0 transition-colors duration-200">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3.5 w-fit group">
+            <Link href="/" className="flex items-center gap-3 w-fit group">
               <Image
                 src="/logo.png"
                 alt="Taka Gelo Koi Logo"
-                width={64}
-                height={64}
-                className="h-12 w-12 sm:h-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
+                width={56}
+                height={56}
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain transition-transform duration-200 group-hover:scale-105"
               />
-              <span className="bengali-title text-2xl font-extrabold tracking-wider bg-gradient-to-r from-violet-700 via-indigo-600 to-blue-600 dark:from-violet-400 dark:via-indigo-300 dark:to-cyan-400 bg-clip-text text-transparent">
-                টাকা গেল কই ?
+              <span className="bengali-title text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                টাকা গেল <span className="text-indigo-600 dark:text-indigo-400">কই ?</span>
               </span>
             </Link>
             <p className="bengali-title text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
               আপনার দৈনন্দিন জীবন, ব্যবসা এবং পড়াশোনার খরচের সঠিক হিসেব রাখুন একদম সহজ ও নিরাপদ উপায়ে।
             </p>
             {/* Social Icons */}
-            <div className="flex items-center gap-2 pt-2">
+            <div className="flex items-center gap-2 pt-1">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -90,9 +90,9 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300"
+                    className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 shadow-sm transition-all duration-200 hover:scale-105"
                   >
-                    <Icon className="h-4.5 w-4.5" />
+                    <Icon className="h-4 w-4" />
                   </a>
                 );
               })}
@@ -101,7 +101,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
+            <h4 className="text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
               Quick Navigation
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -120,7 +120,7 @@ export default function Footer() {
 
           {/* Dashboards */}
           <div className="space-y-4">
-            <h4 className="bengali-title text-sm font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
+            <h4 className="bengali-title text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
               ড্যাশবোর্ডসমূহ
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -131,25 +131,25 @@ export default function Footer() {
                     className="bengali-title text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors flex items-center gap-1.5 w-fit"
                   >
                     <span>{link.name}</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-50" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Newsletter / App Info */}
+          {/* App Info */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
-              Stay Connected
+            <h4 className="text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-slate-100">
+              About Platform
             </h4>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Track your financial freedom with precision. Designed for personal, business & student life.
+              পরিকল্পিত আর্থিক স্বাধীনতা ও নিরাপদ হিসাব ব্যবস্থার জন্য নির্মিত মিনিমালিস্ট ফিনান্স ট্র্যাকার।
             </p>
-            <div className="rounded-2xl p-4 bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-sm">
-              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                100% Free & Open System
+            <div className="rounded-xl p-3.5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+              <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
+                ১০০% ফ্রি ও নিরাপদ ব্যবস্থা
               </span>
             </div>
           </div>
@@ -157,11 +157,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
           <p>&copy; {currentYear} Taka Gelo Koi. All rights reserved.</p>
-          <div className="flex items-center gap-1 bengali-title">
+          <div className="flex items-center gap-1.5 bengali-title">
             <span>বাংলাদেশে নির্মিত</span>
-            <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500 mx-0.5 animate-pulse" />
+            <Heart className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400 fill-indigo-600 dark:fill-indigo-400" />
           </div>
         </div>
 
